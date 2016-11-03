@@ -39,11 +39,20 @@ public class Accessor {
 			System.out.println("Posa el teu DNI");
 			String Dni = Lector.next();
 			Client Usuari=BDVirtual.CercaClientperDNI(Dni);
-			if (Usuari==null){System.out.println("no exitsteix cap client registrat amb aquest DNI");}
+			if (Usuari==null){System.out.println("no existeix cap client registrat amb aquest DNI");}
 			else {
 				
-				System.out.println("Si que existeix l'usuari");
-			
+				System.out.println("Que vols fer? Escull opcio escrivint un numero");
+				System.out.println("	1 - Ingressar diners");
+				
+				Scanner scan = new Scanner(System.in);
+				int resposta = scan.nextInt();
+				
+				switch(resposta){
+				
+				case 1:
+					ComptaBancaria.ingressarDiners();
+				}
 			
 			}
 			}

@@ -1,5 +1,7 @@
 package paquet;
 
+import java.util.Scanner;
+
 public class ComptaBancaria {
    private String IBAN;
    private Double Saldo;
@@ -44,36 +46,17 @@ public class ComptaBancaria {
 		}
 
 
-		public String getIBAN() {
-			return IBAN;
+	public static void ingressarDiners(){
+		Scanner Lector = new Scanner(System.in);
+		Double i;
+		System.out.println("Ingressi la quantitat de diners desitjada, si us plau");
+		i = Lector.nextDouble();
+		while(i<10){
+			System.out.println("La quantitat ha de ser major a 10€. ");
+			i = Lector.nextDouble();
 		}
-
-
-		public Double getSaldo() {
-			return Saldo;
-		}
-
-
-		public String getNumeroCompta() {
-			return numeroCompta;
-		}
-
-
-		public String getNumerodecontrol1() {
-			return numerodecontrol1;
-		}
-
-
-		public String getNumerodecontrol2() {
-			return numerodecontrol2;
-		}
-
-
-		public static int getNumComptes() {
-			return numComptes;
-		}
-
-
+		System.out.println("S'ha fet l'ingrés amb èxit");
 		
+	}
 
 	}
