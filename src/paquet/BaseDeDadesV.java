@@ -26,11 +26,8 @@ public class BaseDeDadesV {
 					cli2.AfegirComptaBancariaAmbParametres("0742", 200.00);
 					LlistaClients.set(LlistaClients.indexOf(cli2), cli2);
 					}
-				
-				
-		
-				}
-		
+		}
+						
 		public Client AfegirClientaBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
 				String codiJavaBank, String codiSucursal, String ddMMyyyyAlta){
 			
@@ -76,7 +73,6 @@ public class BaseDeDadesV {
 		    }
 		    return false;
 		}
-		
 		
 		
 		public Client CercaClientperDNI(String DNI) {
