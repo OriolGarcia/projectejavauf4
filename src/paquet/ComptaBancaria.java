@@ -68,7 +68,7 @@ public class ComptaBancaria {
 		i = Lector.nextDouble();
 		System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
 		x = Lector.next();
-		if
+		
 		
 	}
 
