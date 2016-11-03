@@ -34,16 +34,25 @@ public class Accessor {
 			
 		}
 		
-		private static void ValidaBanquer(){}
+		private static void ValidaBanquer(){
+			
+		}
+		
+		
 		private static void ValidaClient(BaseDeDadesV BDVirtual){
 			System.out.println("Posa el teu DNI");
 			String Dni = Lector.next();
 			Client Usuari=BDVirtual.CercaClientperDNI(Dni);
+			
 			if (Usuari==null){System.out.println("no existeix cap client registrat amb aquest DNI");}
 			else {
 				
 				System.out.println("Que vols fer? Escull opcio escrivint un numero");
 				System.out.println("	1 - Ingressar diners");
+				System.out.println("	2 - Nou PIN");
+				System.out.println("	3 - Fer transferencia");
+				System.out.println("	4 - Ultims moviments");
+				System.out.println("	5 - Sortir");
 				
 				Scanner scan = new Scanner(System.in);
 				int resposta = scan.nextInt();
@@ -52,7 +61,10 @@ public class Accessor {
 				
 				case 1:
 					ComptaBancaria.ingressarDiners();
-				}
+				case 2: 
+					ComptaBancaria.setPIN();
+				case 3:
+					
 			
 			}
 			}

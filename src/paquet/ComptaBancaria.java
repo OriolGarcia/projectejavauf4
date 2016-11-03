@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class ComptaBancaria {
    private String IBAN;
    private Double Saldo;
+   private Double Deutes;
    private String PIN;
+   private String Historial;
    private String numeroCompta;
    private String numerodecontrol1;
    private String numerodecontrol2;
@@ -41,7 +43,7 @@ public class ComptaBancaria {
 	public void setPIN(String OldPIN, String NewPIN) {
 			if (PIN==OldPIN && NewPIN.length()==4&&Main.isNumeric(NewPIN))
 			PIN = NewPIN;
-			else if (PIN!=OldPIN)  System.out.println("El PIN antic és icorrecte. No s'ha pogut canviar el PIN" );
+			else if (PIN!=OldPIN)  System.out.println("El PIN antic és incorrecte. No s'ha pogut canviar el PIN" );
 			else if (NewPIN.length()!=4||!Main.isNumeric(NewPIN)) System.out.println("El PIN ha de tenir 4 numeros" );
 		}
 
@@ -55,7 +57,18 @@ public class ComptaBancaria {
 			System.out.println("La quantitat ha de ser major a 10€. ");
 			i = Lector.nextDouble();
 		}
-		System.out.println("S'ha fet l'ingrés amb èxit");
+		System.out.println("S'ha fet l'ingrés amb èxit");	
+	}
+	
+	public static void ferTransferencia(){
+		Scanner Lector = new Scanner(System.in);
+		Double i;
+		String x;
+		System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
+		i = Lector.nextDouble();
+		System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
+		x = Lector.next();
+		if
 		
 	}
 
