@@ -45,6 +45,8 @@ public class BaseDeDadesV {
 				return null;}
 				
 				LlistaClients.add(C1);
+				System.out.println("S'ha inserit un Client a la BD amb DNI: "+ C1.getDni());
+				
 				return C1;
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -74,7 +76,23 @@ public class BaseDeDadesV {
 		    return false;
 		}
 		
-		
+		public ComptaBancaria CercaComptaBancariaperIBAN(ComptaBancaria CC, String IBAN){
+			 Client cli = null;
+			 ComptaBancaria CCretorn =null;
+			    for (int i=0;i<LlistaClients.size();i++) {
+			    	for (int k=0;k<LlistaClients.get(i).getLlistaComptesdelClient().size();k++)
+			    		if (LlistaClients.get(i).getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
+			    			CCretorn=LlistaClients.get(i).getLlistaComptesdelClient().get(k);
+			    			if (CC!=null){
+			    				
+			    				LlistaClients.get(i).SubstitueixCC(k,CC);
+			    			}
+			    			break;
+			        }
+			    }
+			    return CCretorn;
+			
+		}
 		public Client CercaClientperDNI(String DNI) {
 		    Client cli = null;
 		    for (Client index : LlistaClients) {

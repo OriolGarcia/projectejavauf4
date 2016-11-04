@@ -46,26 +46,30 @@ public class Accessor {
 			
 			if (Usuari==null){System.out.println("no existeix cap client registrat amb aquest DNI");}
 			else {
-				
+				int resposta=3;
+				while (resposta!=3){
+			
 				System.out.println("Que vols fer? Escull opcio escrivint un numero");
-				System.out.println("	1 - Ingressar diners");
-				System.out.println("	2 - Nou PIN");
-				System.out.println("	3 - Fer transferencia");
-				System.out.println("	4 - Ultims moviments");
-				System.out.println("	5 - Sortir");
+				System.out.println("	1 - Ingressar diners a una Compta Bancaria qualsevol");
+				System.out.println("	2 - Fer operacions amb una de les meves comptes bancaries");
+				System.out.println("	3 - Sortir");
 				
 				Scanner scan = new Scanner(System.in);
-				int resposta = scan.nextInt();
+				resposta = scan.nextInt();
 				
 				switch(resposta){
 				
 				case 1:
-					ComptaBancaria.ingressarDiners();
-				case 2: 
-					ComptaBancaria.setPIN();
-				case 3:
+					ComptaBancaria.ingressarDiners(BDVirtual);
 					
-			
+				case 2: 
+					//ComptaBancaria.setPIN();
+				case 3:
+				
+					
+				}
+				}
+				
 			}
 			}
 			

@@ -47,19 +47,40 @@ public class ComptaBancaria {
 			else if (NewPIN.length()!=4||!Main.isNumeric(NewPIN)) System.out.println("El PIN ha de tenir 4 numeros" );
 		}
 
-
-	public static void ingressarDiners(){
-		Scanner Lector = new Scanner(System.in);
-		Double i;
-		System.out.println("Ingressi la quantitat de diners desitjada, si us plau");
-		i = Lector.nextDouble();
-		while(i<10){
-			System.out.println("La quantitat ha de ser major a 10€. ");
-			i = Lector.nextDouble();
-		}
-		System.out.println("S'ha fet l'ingrés amb èxit");	
+	public void SumaSaldo(double Quantitat){
+		
+		Saldo+=Quantitat;
 	}
 	
+	
+	
+	public static void ingressarDiners(BaseDeDadesV BDVirtual){
+		Scanner Lector = new Scanner(System.in);
+		System.out.println("Escrigui el IBAN complet de la compta destinataria");
+		String IBAN = Lector.nextLine();
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		if(CCtemporal!=null){
+			Double Quantitat;
+			System.out.println("Ingressi la quantitat de diners desitjada, si us plau");
+			Quantitat = Lector.nextDouble();
+			while(Quantitat<10){
+				System.out.println("La quantitat ha de ser major a 10€. ");
+				Quantitat = Lector.nextDouble();
+			}
+			CCtemporal.SumaSaldo(Quantitat);
+			BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
+			System.out.println("S'ha fet l'ingrés amb èxit");	
+			
+		}
+		else{
+			
+			System.out.println("Aquest IBAN no pertany a cap compta bancaria registrada. ");
+		}
+	}
+	
+	public String getIBAN() {
+		return IBAN;
+	}
 	public static void ferTransferencia(){
 		Scanner Lector = new Scanner(System.in);
 		Double i;

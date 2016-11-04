@@ -8,7 +8,7 @@ public class Client extends Persona {
 	
 	private String Codisucursal;
 	private Date datadAlta;
-	private ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
+	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
 	Scanner Lector = new Scanner(System.in);
 	// constructor
 	public Client(String nom, String cognoms, String dni, Date dataNaixement, String Codipais, String codiJavaBank,
@@ -30,6 +30,16 @@ public class Client extends Persona {
 	// getters i setters
 	
 	
+	public ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
+		return LlistaComptesdelClient;
+	}
+
+
+	public void setLlistaComptesdelClient(ArrayList<ComptaBancaria> llistaComptesdelClient) {
+		LlistaComptesdelClient = llistaComptesdelClient;
+	}
+
+
 	public String sucursal(){
 		while(Codisucursal.length()!=4||Main.isNumeric(Codisucursal)){
 			System.out.println("El codi de del Bank ha de ser un numero d 4 digits. Insereixi un nou codi.");
@@ -72,7 +82,13 @@ public class Client extends Persona {
 			  return false;
 		 }
 	}
-	
+	public void SubstitueixCC(int i,ComptaBancaria CC){
+		
+		LlistaComptesdelClient.set(i, CC);
+		
+		
+		
+	}
 	
 	public boolean AfegirComptaBancariaAmbParametres(String PIN,double Saldoinicial){
 		if (PIN.length()!=4&&!Main.isNumeric(PIN))
