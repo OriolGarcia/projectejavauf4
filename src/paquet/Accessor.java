@@ -46,7 +46,7 @@ public class Accessor {
 			
 			if (Usuari==null){System.out.println("no existeix cap client registrat amb aquest DNI");}
 			else {
-				int resposta=3;
+				int resposta=0;
 				while (resposta!=3){
 			
 				System.out.println("Que vols fer? Escull opcio escrivint un numero");
