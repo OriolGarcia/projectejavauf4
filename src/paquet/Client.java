@@ -43,7 +43,7 @@ public class Client extends Persona {
 	public String sucursal(){
 		while(Codisucursal.length()!=4||Main.isNumeric(Codisucursal)){
 			System.out.println("El codi de del Bank ha de ser un numero d 4 digits. Insereixi un nou codi.");
-					
+			
 					Codisucursal = Lector.nextLine();
 		}
 		return Codisucursal;
@@ -61,6 +61,25 @@ public class Client extends Persona {
 		this.datadAlta = datadAlta;
 		return null;
 	}
+	public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
+		
+		
+		Client cli = BDVirtual.CercaClientperDNI(Dni);
+		System.out.println("Escull en quina de les teves comptes vols fer les operacions");
+		
+		for(int i=0;i<cli.LlistaComptesdelClient.size();i++){
+			System.out.println((i+1)+" - IBAN:"+cli.LlistaComptesdelClient.get(i).getIBAN());	
+		}
+		int opcio = cli.Lector.nextInt();
+		String IBAN=cli.LlistaComptesdelClient.get(opcio-1).getIBAN();
+		ComptaBancaria.Menudoperacions(BDVirtual,IBAN);
+	}
+	
+	
+	
+	
+	
+	
 	
 	public boolean AfegirComptaBancaria(){
 		System.out.println("Quin PIN vol colocar al compte? (4 digits enters)");

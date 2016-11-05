@@ -36,7 +36,7 @@ public class ComptaBancaria {
 			this.IBAN=Codipais+ numerodecontrol1+codibanc+codisucursal+numerodecontrol2+numeroCompta;
 			this.Saldo=SaldoInicial;
 			this.PIN = PIN;
-			System.out.println("L'IBAN generat és el següent:"+IBAN );
+			System.out.println("L'IBAN generat és: "+IBAN +"té el PIN: :"+PIN);
 		}
 		numComptes++;
 	}
@@ -47,6 +47,9 @@ public class ComptaBancaria {
 			else if (NewPIN.length()!=4||!Main.isNumeric(NewPIN)) System.out.println("El PIN ha de tenir 4 numeros" );
 		}
 
+	public String getPIN() {
+		return PIN;
+	}
 	public void SumaSaldo(double Quantitat){
 		
 		Saldo+=Quantitat;
@@ -77,7 +80,27 @@ public class ComptaBancaria {
 			System.out.println("Aquest IBAN no pertany a cap compta bancaria registrada. ");
 		}
 	}
-	
+	public static void Menudoperacions(BaseDeDadesV BDVirtual,String IBAN){
+		Scanner Lector = new Scanner(System.in);
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		
+		if(CCtemporal!=null){
+			String PIN=""; int n=3;
+			while((!PIN.equals(CCtemporal.PIN)&&(n>0))){
+				System.out.println("Escrigui el PIN per la compta");
+				PIN = Lector.nextLine();
+				if(!PIN.equals(CCtemporal.PIN)){
+					n--;
+					System.out.println("PIN incorrecte. Queden "+n+" intents.");
+				}
+			}
+			if(PIN.equals(CCtemporal.PIN)){
+				
+				System.out.println("Has entrat al tauler d'operacions de la compta amb IBAN:"+IBAN);
+			}
+		}
+		
+	}
 	public String getIBAN() {
 		return IBAN;
 	}

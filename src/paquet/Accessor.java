@@ -61,9 +61,8 @@ public class Accessor {
 				
 				case 1:
 					ComptaBancaria.ingressarDiners(BDVirtual);
-					
-				case 2: 
-					//ComptaBancaria.setPIN();
+				case 2:	
+				Client.LlistarComptesBancaries(BDVirtual,Dni);
 				case 3:
 				
 					
