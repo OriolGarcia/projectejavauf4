@@ -98,20 +98,48 @@ public class ComptaBancaria {
 				
 				System.out.println("Has entrat al tauler d'operacions de la compta amb IBAN:"+IBAN);
 			}
-		}
 		
-	}
+			int resposta=0;
+		
+			System.out.println("Que vols fer? Escull opcio escrivint un numero");
+			System.out.println("	1 - Ingressar diners");
+			System.out.println("	2 - Fer transferencia");
+			System.out.println("	3 - Visualitzar últims moviments");
+			System.out.println("	4 - Canviar el PIN");
+			System.out.println("	5 - Sortir");
+			
+			
+			Scanner scan = new Scanner(System.in);
+			resposta = scan.nextInt();
+			
+			switch(resposta){
+			
+			case 1:
+				ComptaBancaria.ingressarDiners(BDVirtual);
+			case 2:
+				ComptaBancaria.ferTransferencia(BDVirtual,IBAN);
+			case 3:
+				
+			case 4:
+				
+			}
+			}
+			}
+			
+			
 	public String getIBAN() {
 		return IBAN;
 	}
-	public static void ferTransferencia(){
+	public static void ferTransferencia(BaseDeDadesV BDVirtual, String Dni){
 		Scanner Lector = new Scanner(System.in);
-		Double i;
+		Double y;
 		String x;
-		System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
-		i = Lector.nextDouble();
+		Client cli = BDVirtual.CercaClientperDNI(Dni);
 		System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
 		x = Lector.next();
+		System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
+		y = Lector.nextDouble();
+		
 		
 		
 	}

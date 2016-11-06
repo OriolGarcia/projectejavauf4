@@ -26,7 +26,17 @@ public class BaseDeDadesV {
 					cli2.AfegirComptaBancariaAmbParametres("0742", 200.00);
 					LlistaClients.set(LlistaClients.indexOf(cli2), cli2);
 					}
+				
+				
+				Banquer ban = AfegirBanquerBD("Carlos","Sanchez Romero","12345678P","24-09-1982", "ES", codiJavaBank,
+												"Holaquetal1234");
+				
+		
+				Banquer ban2 = AfegirBanquerBD("Maria","Garcia Martinez","66612345V","16-05-1983", "ES", codiJavaBank,
+												"Holaquetal1234");
 		}
+				
+				
 						
 		public Client AfegirClientaBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
 				String codiJavaBank, String codiSucursal, String ddMMyyyyAlta){
@@ -60,12 +70,52 @@ public class BaseDeDadesV {
 		public void setLlistaClients(ArrayList<Client> llistaClients) {
 			LlistaClients = llistaClients;
 		}
+		
+		
+		public Banquer AfegirBanquerBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
+				String codiJavaBank, String contrasenya){
+			
+			String	patro="dd-MM-yyyy";
+			SimpleDateFormat FormatData = new SimpleDateFormat(patro);
+			
+			try {
+				
+				Date Dnaixement =  FormatData.parse(ddMMyyyyNaixement);
+				Banquer B1 =new Banquer(nom,Cognoms,dni,Dnaixement,CodiPais,
+						codiJavaBank,contrasenya);
+				if(JaExisteixBanquer(B1)){System.out.println("Ja existeix un banquer registrat amb DNI "+ dni); 
+				return null;}
+				
+				LlistaBanquers.add(B1);
+				System.out.println("S'ha inserit un Banquer a la BD amb DNI: "+ B1.getDni());
+				
+				return B1;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+			
+		
+		
 		public ArrayList<Banquer> getLlistaBanquer() {
 			return LlistaBanquers;
 		}
 		public void setLlistaBanquer(ArrayList<Banquer> llistaBanquer) {
 			LlistaBanquers = llistaBanquer;
 		}
+		
+		public boolean JaExisteixBanquer(Banquer ban) {
+		    
+		    for (Banquer index : LlistaBanquers) {
+		        if (index.equals(ban)) {
+		            return true;
+		        }
+		    }
+		    return false;
+		}
+		
 		public boolean JaExisteixClient(Client cli) {
 		    
 		    for (Client index : LlistaClients) {
@@ -75,6 +125,7 @@ public class BaseDeDadesV {
 		    }
 		    return false;
 		}
+		
 		
 		public ComptaBancaria CercaComptaBancariaperIBAN(ComptaBancaria CC, String IBAN){
 			 Client cli = null;
@@ -93,6 +144,20 @@ public class BaseDeDadesV {
 			    return CCretorn;
 			
 		}
+		
+		
+		public Banquer CercaBanquerperDNI(String DNI) {
+		    Banquer ban = null;
+		    for (Banquer index : LlistaBanquers) {
+		        if (index.getDni().equals(DNI)) {
+		            ban = index;
+		            break;
+		        }
+		    }
+		    return ban;
+		}
+		
+		
 		public Client CercaClientperDNI(String DNI) {
 		    Client cli = null;
 		    for (Client index : LlistaClients) {

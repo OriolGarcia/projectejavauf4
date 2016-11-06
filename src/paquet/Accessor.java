@@ -18,7 +18,7 @@ public class Accessor {
 			 resposta = Lector.nextInt();
 			switch (resposta){
 			case 1:
-				ValidaBanquer();
+				ValidaBanquer(BDVirtual);
 				return 1;
 			case 2:
 				ValidaClient( BDVirtual);
@@ -34,9 +34,37 @@ public class Accessor {
 			
 		}
 		
-		private static void ValidaBanquer(){
+		private static void ValidaBanquer(BaseDeDadesV BDVirtual){
+			System.out.println("Posa el teu DNI");
+			String Dni = Lector.next();
+			Banquer Usuari = BDVirtual.CercaBanquerperDNI(Dni);
+			if (Usuari==null){System.out.println("no existeix cap banquer registrat amb aquest DNI");}
+			else {
+				
+				int resposta=0;
+				
+				System.out.println("Que vols fer? Escull opcio escrivint un numero");
+				System.out.println("	1 - Donar d'alta a un client");
+				System.out.println("	2 - Donar d'alta a un banquer");
+				System.out.println("	3 - Donar d'alta una compta bancaria");
+				System.out.println("	4 - Donar de baixa a un client");
+				System.out.println("	5 - Donar de baixa a un banquer");
+				System.out.println("	6 - Donar de baixa una compta bancaria");
+				System.out.println("	7 - Fer un préstec");
+				System.out.println("	8 - Hipoteques");
+				System.out.println("	9 - Sortir");
+				
+				Scanner scan = new Scanner(System.in);
+				resposta = scan.nextInt();
+				
+				switch(resposta){
+				
+				
+				}
+				
+			}
+			}
 			
-		}
 		
 		
 		private static void ValidaClient(BaseDeDadesV BDVirtual){
@@ -46,32 +74,10 @@ public class Accessor {
 			
 			if (Usuari==null){System.out.println("no existeix cap client registrat amb aquest DNI");}
 			else {
-				int resposta=0;
-				while (resposta!=3){
-			
-				System.out.println("Que vols fer? Escull opcio escrivint un numero");
-				System.out.println("	1 - Ingressar diners a una Compta Bancaria qualsevol");
-				System.out.println("	2 - Fer operacions amb una de les meves comptes bancaries");
-				System.out.println("	3 - Sortir");
-				
-				Scanner scan = new Scanner(System.in);
-				resposta = scan.nextInt();
-				
-				switch(resposta){
-				
-				case 1:
-					ComptaBancaria.ingressarDiners(BDVirtual);
-				case 2:	
-				Client.LlistarComptesBancaries(BDVirtual,Dni);
-				case 3:
-				
-					
-				}
-				}
+					Client.LlistarComptesBancaries(BDVirtual,Dni);
+			}
 				
 			}
-			}
-			
 		
 		private static void InfoBanc(){}
 		
