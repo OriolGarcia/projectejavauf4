@@ -2,6 +2,12 @@ package paquet;
 
 import java.util.Scanner;
 
+/**
+ * 
+ * Aquesta es una classe de Compta bancaria
+ *
+ */
+
 public class ComptaBancaria {
    private String IBAN;
    private Double Saldo;
@@ -36,7 +42,7 @@ public class ComptaBancaria {
 			this.IBAN=Codipais+ numerodecontrol1+codibanc+codisucursal+numerodecontrol2+numeroCompta;
 			this.Saldo=SaldoInicial;
 			this.PIN = PIN;
-			System.out.println("L'IBAN generat és: "+IBAN +"té el PIN: :"+PIN);
+			System.out.println("L'IBAN generat és: "+IBAN +" té el PIN: "+PIN);
 		}
 		numComptes++;
 	}
@@ -55,7 +61,11 @@ public class ComptaBancaria {
 		Saldo+=Quantitat;
 	}
 	
-	
+/**
+ * Aqui ens demanarà l'IBAN, en cas de possar l'IBAN incorrecte, ens mostrarà un missatge d'error
+ * Després Ingresarem la quantitat desitjada
+ * Si no posem més de 10€ ens dirà que ha de ser major que 10.
+ */
 	
 	public static void ingressarDiners(BaseDeDadesV BDVirtual){
 		Scanner Lector = new Scanner(System.in);
@@ -80,6 +90,12 @@ public class ComptaBancaria {
 			System.out.println("Aquest IBAN no pertany a cap compta bancaria registrada. ");
 		}
 	}
+	
+	/**
+	 * Aqui creem el menú, on se'ns demanarà el PIN de la compta, tenim 3 intents
+	 * Quan haguem entrar podrem elegir diferentes opcions
+	 */
+	
 	public static void Menudoperacions(BaseDeDadesV BDVirtual,String IBAN){
 		Scanner Lector = new Scanner(System.in);
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
@@ -101,13 +117,12 @@ public class ComptaBancaria {
 		
 			int resposta=0;
 		
-			System.out.println("Que vols fer? Escull opcio escrivint un numero");
+			System.out.println("Que vols fer? Escull opcio escrivint un numero.");
 			System.out.println("	1 - Ingressar diners");
 			System.out.println("	2 - Fer transferencia");
 			System.out.println("	3 - Visualitzar últims moviments");
 			System.out.println("	4 - Canviar el PIN");
 			System.out.println("	5 - Sortir");
-			
 			
 			Scanner scan = new Scanner(System.in);
 			resposta = scan.nextInt();
@@ -121,27 +136,22 @@ public class ComptaBancaria {
 			case 3:
 				
 			case 4:
-				
+	
 			}
 			}
 			}
-			
-			
+						
 	public String getIBAN() {
 		return IBAN;
 	}
-	public static void ferTransferencia(BaseDeDadesV BDVirtual, String Dni){
+	public static void ferTransferencia(BaseDeDadesV BDVirtual, String IBAN){
 		Scanner Lector = new Scanner(System.in);
 		Double y;
 		String x;
-		Client cli = BDVirtual.CercaClientperDNI(Dni);
 		System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
 		x = Lector.next();
 		System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
-		y = Lector.nextDouble();
-		
-		
+		y = Lector.nextDouble();	
 		
 	}
-
 	}

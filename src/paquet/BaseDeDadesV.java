@@ -3,6 +3,13 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+/**
+ * 
+ * Aqui guardem les dades de clients i banquers
+ *
+ */
+
 public class BaseDeDadesV {
 		private String codiJavaBank;
 		private ArrayList<Client> LlistaClients= new ArrayList<Client>();
@@ -33,7 +40,7 @@ public class BaseDeDadesV {
 				
 		
 				Banquer ban2 = AfegirBanquerBD("Maria","Garcia Martinez","66612345V","16-05-1983", "ES", codiJavaBank,
-												"Holaquetal1234");
+												"Holaquetal4321");
 		}
 				
 				
@@ -156,7 +163,6 @@ public class BaseDeDadesV {
 		    }
 		    return ban;
 		}
-		
 		
 		public Client CercaClientperDNI(String DNI) {
 		    Client cli = null;

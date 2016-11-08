@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * 
+ * Aqui tenim la clase client que hereta de Persona, on tenim les caracteristiques de client
+ *
+ */
+
 public class Client extends Persona {
 	
 	private String Codisucursal;
@@ -25,20 +31,16 @@ public class Client extends Persona {
 		this.datadAlta = datadAlta;
 		
 	}
-	
-		
-	// getters i setters
-	
+			
+	// getters i setters	
 	
 	public ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
 		return LlistaComptesdelClient;
 	}
 
-
 	public void setLlistaComptesdelClient(ArrayList<ComptaBancaria> llistaComptesdelClient) {
 		LlistaComptesdelClient = llistaComptesdelClient;
 	}
-
 
 	public String sucursal(){
 		while(Codisucursal.length()!=4||Main.isNumeric(Codisucursal)){
@@ -75,12 +77,6 @@ public class Client extends Persona {
 		ComptaBancaria.Menudoperacions(BDVirtual,IBAN);
 	}
 	
-	
-	
-	
-	
-	
-	
 	public boolean AfegirComptaBancaria(){
 		System.out.println("Quin PIN vol colocar al compte? (4 digits enters)");
 		String PIN=Lector.nextLine();
@@ -105,8 +101,7 @@ public class Client extends Persona {
 		
 		LlistaComptesdelClient.set(i, CC);
 		
-		
-		
+				
 	}
 	
 	public boolean AfegirComptaBancariaAmbParametres(String PIN,double Saldoinicial){
@@ -125,15 +120,9 @@ public class Client extends Persona {
 	}
 	
 	
-	
-	
+		
 	public void veureDadesPersonalsPubliques(){
 		
 	}
    
 }
-
-
-
-
-

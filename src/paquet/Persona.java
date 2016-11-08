@@ -3,6 +3,12 @@ import java.util.Date;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 
+/** 
+ * 
+ * Aquesta es una clase abstracte de Persona
+ *
+ */
+
 public abstract class Persona {
 	protected String nom;
 	protected String cognoms;
