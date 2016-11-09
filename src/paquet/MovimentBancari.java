@@ -7,5 +7,12 @@ public class MovimentBancari {
 	private String nom;
 	private Double quantitat;
 
-	
+	public MovimentBancari(Date data, String nom, Double quantitat){
+		
+		this.data = data;
+		this.nom = nom;
+		this.quantitat = quantitat;
+	}
 }
+
+

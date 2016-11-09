@@ -17,7 +17,9 @@ public class ComptaBancaria {
    private String numeroCompta;
    private String numerodecontrol1;
    private String numerodecontrol2;
+   private ArrayList<MovimentBancari> LlistaMoviments = new ArrayList<MovimentBancari>();
    private static int numComptes;
+   
 
 // Constructor
 	ComptaBancaria(double SaldoInicial, String PIN ,
@@ -65,11 +67,11 @@ public class ComptaBancaria {
 	public String getPIN() {
 		return PIN;
 	}
-	public void SumaSaldo(double Quantitat){
+	public void SumaSaldo(double Quantitat, String Concepte){
 		
 		Saldo+=Quantitat;
 	}
-public void RestaSaldo(double Quantitat){
+	public void RestaSaldo(double Quantitat, String Concepte){
 		
 		Saldo-=Quantitat;
 	}
@@ -104,9 +106,10 @@ public void RestaSaldo(double Quantitat){
 	}
 	
 	/**
-	 * Aqui creem el menú, on se'ns demanarà el PIN de la compta, tenim 3 intents
+	 * Creem el menú, on se'ns demanarà el PIN de la compta, tenim 3 intents
 	 * Quan haguem entrar podrem elegir diferentes opcions
 	 */
+	
 	private static void TreureDiners(BaseDeDadesV BDVirtual, String IBAN) {
 		Scanner Lector = new Scanner(System.in);
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
@@ -194,16 +197,22 @@ public void RestaSaldo(double Quantitat){
 	public String getIBAN() {
 		return IBAN;
 	}
+	
+	 public void UltimsMoviments(BaseDeDadesV BDVirtual,String IBAN){
+		 
+	}
+	
 	public static void ferTransferencia(BaseDeDadesV BDVirtual, String IBAN){
 		Scanner Lector = new Scanner(System.in);
-		System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
-		String IBANdesti = Lector.next();
+		System.out.println("Concepte de la transferència?");
+		String Concepte=Lector.nextLine();
 		ComptaBancaria CCOrigen=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		ComptaBancaria CCDesti=BDVirtual.CercaComptaBancariaperIBAN(null, IBANdesti);
 		boolean sortir=false;
 		while(!sortir){
-			System.out.println("Concepte de la transferència?");
-			String Concepte=Lector.nextLine();
+			
+			System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
+			String IBANdesti = Lector.next();
 			if(CCDesti!=null){
 				System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
 				Double Quantitat = Lector.nextDouble();;
@@ -211,8 +220,8 @@ public void RestaSaldo(double Quantitat){
 						System.out.println("La quantitat a ingressar ha des ser un nombre positiu o 0");
 						Lector.nextDouble();	
 					}
-					CCOrigen.RestaSaldo(Quantitat);
-					CCDesti.SumaSaldo(Quantitat);
+					CCOrigen.RestaSaldo(Quantitat, Concepte);
+					CCDesti.SumaSaldo(Quantitat, Concepte);
 					BDVirtual.CercaComptaBancariaperIBAN(CCOrigen, IBAN);
 					BDVirtual.CercaComptaBancariaperIBAN(CCDesti, IBANdesti);
 					System.out.println("S'ha fet la transferència amb èxit");
@@ -228,6 +237,7 @@ public void RestaSaldo(double Quantitat){
 					sortir=false;
 				else sortir = true;
 				
-			}}
+			}
+			}
 	}
 	}
