@@ -1,6 +1,7 @@
 package paquet;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -68,17 +69,20 @@ public class ComptaBancaria {
 	public String getPIN() {
 		return PIN;
 	}
-	public void SumaSaldo(double Quantitat, String Concepte){
-		
+	public void SumaSaldo(double Quantitat, String concepte){
+		Date data = new Date();
 		Saldo+=Quantitat;
-	}
-	public void RestaSaldo(double Quantitat, String Concepte){
+		LlistaMoviments.add(new MovimentBancari(data, concepte, Quantitat));
 		
+	}
+	public void RestaSaldo(double Quantitat, String concepte){
+		Date data = new Date();
 		Saldo-=Quantitat;
+		LlistaMoviments.add(new MovimentBancari(data, concepte, -Quantitat));
 	}
 /**
  * Aqui ens demanarà l'IBAN, en cas de possar l'IBAN incorrecte, ens mostrarà un missatge d'error
- * Després Ingresarem la quantitat desitjada
+ * Després Ingresarem la quantitat desitjada.
  * Si no posem més de 10€ ens dirà que ha de ser major que 10.
  */
 	

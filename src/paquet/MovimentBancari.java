@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class MovimentBancari {
 	private Date data;
-	private String nom;
+	private String concepte;
 	private Double quantitat;
 
-	public MovimentBancari(Date data, String nom, Double quantitat){
+	public MovimentBancari(Date data, String concepte, Double quantitat){
 		
 		this.data = data;
-		this.nom = nom;
+		this.concepte = concepte;
 		this.quantitat = quantitat;
 	}
 }
