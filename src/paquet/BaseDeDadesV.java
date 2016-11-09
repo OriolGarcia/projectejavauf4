@@ -144,6 +144,7 @@ public class BaseDeDadesV {
 			    			if (CC!=null){
 			    				
 			    				LlistaClients.get(i).SubstitueixCC(k,CC);
+			    				CCretorn=CC;
 			    			}
 			    			break;
 			        }
