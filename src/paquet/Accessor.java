@@ -59,7 +59,7 @@ public class Accessor {
 					System.out.println("Adeu.");
 				}else{
 					
-				Banquer.menudOperacionsBanquer();
+				Banquer.menudOperacionsBanquer(BDVirtual);
 				
 			}
 			}

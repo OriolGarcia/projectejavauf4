@@ -1,5 +1,8 @@
 package paquet;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -11,7 +14,7 @@ import java.util.Scanner;
 
 public class Banquer extends Persona {
 	private String contrasenya;
-	
+	static Scanner Lector = new Scanner(System.in);
 	// constructor
 	public Banquer(String nom, String cognoms, String dni, Date dataNaixement, String pais, String codiJavaBank,
 					String contrasenya){
@@ -32,7 +35,7 @@ public class Banquer extends Persona {
 	
 	// metodes 
 	
-	public static int menudOperacionsBanquer(){
+	public static int menudOperacionsBanquer(BaseDeDadesV BDVirtual){
 		int resposta=0;
 		
 		System.out.println("Que vols fer? Escull opcio escrivint un numero");
@@ -51,10 +54,10 @@ public class Banquer extends Persona {
 		
 		switch(resposta){
 		case 1:
-			donardAltaClient();
+			donardAltaClient(BDVirtual);
 			return 1;
 		case 2:
-			donardAltaBanquer();
+			donardAltaBanquer(BDVirtual);
 			return 1;
 		case 3:
 			donardAltaComptaBancaria();
@@ -82,11 +85,95 @@ public class Banquer extends Persona {
 	}
 	
 	
-	public static void donardAltaClient(){
+	public static void donardAltaClient(BaseDeDadesV BDVirtual){
+		System.out.println("Nom: ");
+		String nom = Lector.nextLine();
+		
+		System.out.println("Cognoms: ");
+		String cognoms = Lector.nextLine();
+		
+		System.out.println("Dni: ");
+		String dni = Lector.nextLine();
+		
+		System.out.println("Data de naixement: ");
+		String date = Lector.nextLine();
+		String dateFormat = "dd-MM-yyyy";
+		DateFormat format = new SimpleDateFormat(dateFormat);
+		Date dataNaixement = null;
+		try {
+			dataNaixement = format.parse(date);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println("Codi del pais: ");
+		String codiPais = Lector.nextLine();
+		
+		System.out.println("Codi JavaBank: ");
+		String codiJavaBank = Lector.nextLine();
+		
+		System.out.println("Codi sucursal: ");
+		String codiSucursal = Lector.nextLine();
+		
+		System.out.println("Data d'alta: ");
+		String date2 = Lector.nextLine();
+		Date datadAlta = null;
+		try {
+			datadAlta = format.parse(date2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Client NouClient = new Client(nom,cognoms,dni,dataNaixement,codiPais,codiJavaBank,codiSucursal,datadAlta);
+		if(BDVirtual.JaExisteixClient(NouClient)){
+			System.out.println("Ja existeix un client registrat amb DNI "+ dni);
+			menudOperacionsBanquer(BDVirtual);
+		}
+		BDVirtual.getLlistaClients().add(NouClient);
+		System.out.print("S'ha inserit un Client a la BD amb DNI: "+ NouClient.getDni());
 		
 	}
 	
-	public static void donardAltaBanquer(){
+	public static void donardAltaBanquer(BaseDeDadesV BDVirtual){
+		System.out.println("Nom: ");
+		String nom = Lector.nextLine();
+		
+		System.out.println("Cognoms: ");
+		String cognoms = Lector.nextLine();
+		
+		System.out.println("Dni: ");
+		String dni = Lector.nextLine();
+		
+		System.out.println("Data de naixement: ");
+		String date = Lector.nextLine();
+		String dateFormat = "dd-MM-yyyy";
+		DateFormat format = new SimpleDateFormat(dateFormat);
+		Date dataNaixement = null;
+		try {
+			dataNaixement = format.parse(date);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println("Codi del pais: ");
+		String codiPais = Lector.nextLine();
+		
+		System.out.println("Codi JavaBank: ");
+		String codiJavaBank = Lector.nextLine();
+		
+		System.out.println("Contrsenya: ");
+		String contrasenya = Lector.nextLine();
+		
+		Banquer NouBanquer = new Banquer(nom,cognoms,dni,dataNaixement,codiPais,codiJavaBank,contrasenya);
+		if(BDVirtual.JaExisteixBanquer(NouBanquer)){
+			System.out.println("Ja existeix un banquer registrat amb DNI "+ dni);
+			menudOperacionsBanquer(BDVirtual);
+		}
+		BDVirtual.getLlistaBanquer().add(NouBanquer);
+		System.out.print("S'ha inserit un Banquer a la BD amb DNI: "+ NouBanquer.getDni());
 		
 	}
 	
