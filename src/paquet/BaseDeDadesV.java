@@ -20,7 +20,7 @@ public class BaseDeDadesV {
 						"ES",codiJavaBank, "0310","04-10-2000");
 				if (cli !=null){
 					cli.AfegirComptaBancariaAmbParametres("7589", 1500.00);
-					cli.AfegirComptaBancariaAmbParametres("0742", 200.00);
+					cli.AfegirComptaBancariaAmbParametres("0742", 1200.00);
 					LlistaClients.set(LlistaClients.indexOf(cli), cli);
 				}
 				
@@ -29,8 +29,8 @@ public class BaseDeDadesV {
 				Client cli2 = AfegirClientaBD("Pepet","Llovera Pallarés","33342194F","30-10-1984",
 						"ES",codiJavaBank, "0310","04-10-1997");
 				if (cli2!=null){
-					cli2.AfegirComptaBancariaAmbParametres("7589", 1500.00);
-					cli2.AfegirComptaBancariaAmbParametres("0742", 200.00);
+					cli2.AfegirComptaBancariaAmbParametres("7589", 8500.00);
+					cli2.AfegirComptaBancariaAmbParametres("0742", 4000.00);
 					LlistaClients.set(LlistaClients.indexOf(cli2), cli2);
 					}
 				

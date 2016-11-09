@@ -46,11 +46,20 @@ public class ComptaBancaria {
 		}
 		numComptes++;
 	}
-	public void setPIN(String OldPIN, String NewPIN) {
-			if (PIN==OldPIN && NewPIN.length()==4&&Main.isNumeric(NewPIN))
-			PIN = NewPIN;
-			else if (PIN!=OldPIN)  System.out.println("El PIN antic és incorrecte. No s'ha pogut canviar el PIN" );
-			else if (NewPIN.length()!=4||!Main.isNumeric(NewPIN)) System.out.println("El PIN ha de tenir 4 numeros" );
+	public static void CanviarPIN(BaseDeDadesV BDVirtual,String IBAN) {
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		Scanner Lector = new Scanner(System.in);
+			System.out.println("Quin és el PIN actual?");
+			String OldPIN= Lector.nextLine();
+			if (CCtemporal.getPIN().equals(OldPIN)){
+				System.out.println("Posa el nou PIN");
+				String NewPIN= Lector.nextLine();
+				if (NewPIN.length()==4&&Main.isNumeric(NewPIN))
+					CCtemporal.PIN = NewPIN;
+				else System.out.println("El PIN ha de tenir 4 numeros" );
+			}
+			else  System.out.println("El PIN antic és incorrecte. No s'ha pogut canviar el PIN" );
+			
 		}
 
 	public String getPIN() {
@@ -60,7 +69,10 @@ public class ComptaBancaria {
 		
 		Saldo+=Quantitat;
 	}
-	
+public void RestaSaldo(double Quantitat){
+		
+		Saldo-=Quantitat;
+	}
 /**
  * Aqui ens demanarà l'IBAN, en cas de possar l'IBAN incorrecte, ens mostrarà un missatge d'error
  * Després Ingresarem la quantitat desitjada
@@ -95,7 +107,29 @@ public class ComptaBancaria {
 	 * Aqui creem el menú, on se'ns demanarà el PIN de la compta, tenim 3 intents
 	 * Quan haguem entrar podrem elegir diferentes opcions
 	 */
-	
+	private static void TreureDiners(BaseDeDadesV BDVirtual, String IBAN) {
+		Scanner Lector = new Scanner(System.in);
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		if(CCtemporal!=null){
+			Double Quantitat;
+			System.out.println("Quina quantitat vol treure?");
+			Quantitat = Lector.nextDouble();
+			while(Quantitat<10){
+				System.out.println("La quantitat ha de ser major a 10€. ");
+				Quantitat = Lector.nextDouble();
+			}
+			CCtemporal.RestaSaldo(Quantitat);
+			BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
+			System.out.println("S'ha fet l'extraccíó amb èxit");	
+			
+		}
+		
+	}
+	private static void ConusltaSaldo(BaseDeDadesV BDVirtual, String IBAN) {
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		System.out.println("En la compta "+IBAN+" hi ha "+ CCtemporal.Saldo+ " €");
+		
+	}
 	public static void Menudoperacions(BaseDeDadesV BDVirtual,String IBAN){
 		Scanner Lector = new Scanner(System.in);
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
@@ -113,45 +147,87 @@ public class ComptaBancaria {
 			if(PIN.equals(CCtemporal.PIN)){
 				
 				System.out.println("Has entrat al tauler d'operacions de la compta amb IBAN:"+IBAN);
-			}
-		
-			int resposta=0;
-		
-			System.out.println("Que vols fer? Escull opcio escrivint un numero.");
-			System.out.println("	1 - Ingressar diners");
-			System.out.println("	2 - Fer transferencia");
-			System.out.println("	3 - Visualitzar últims moviments");
-			System.out.println("	4 - Canviar el PIN");
-			System.out.println("	5 - Sortir");
 			
-			Scanner scan = new Scanner(System.in);
-			resposta = scan.nextInt();
-			
-			switch(resposta){
-			
-			case 1:
-				ComptaBancaria.ingressarDiners(BDVirtual);
-			case 2:
-				ComptaBancaria.ferTransferencia(BDVirtual,IBAN);
-			case 3:
-				
-			case 4:
-	
-			}
-			}
-			}
+					
+						int resposta=0;
+					while(resposta!=7){
+						System.out.println("Que vols fer? Escull opcio escrivint un numero.");
+						System.out.println("	1 - Ingressar diners");
+						System.out.println("	2 - Treure diners");
+						System.out.println("	3 - Fer transferencia");
+						System.out.println("	4 - Consulta saldo");
+						System.out.println("	5 - Visualitzar últims moviments");
+						System.out.println("	6 - Canviar el PIN");
+						System.out.println("	7 - Sortir");
 						
+						Scanner scan = new Scanner(System.in);
+						resposta = scan.nextInt();
+					
+						switch(resposta){
+						
+						case 1:
+							ComptaBancaria.ingressarDiners(BDVirtual);
+							break;
+						case 2:
+							ComptaBancaria.TreureDiners(BDVirtual,IBAN);
+							break;
+						case 3:
+							ComptaBancaria.ferTransferencia(BDVirtual,IBAN);
+							break;
+						case 4:
+							ComptaBancaria.ConusltaSaldo(BDVirtual,IBAN);
+							break;
+						case 5:
+							//ComptaBancaria.UltimsMoviments(BDVirtual,IBAN);
+							break;
+						case 6:
+							ComptaBancaria.CanviarPIN(BDVirtual,IBAN);
+							break;
+						default:
+							break;
+						}
+			}	}
+			}
+	}			
+	
+	
 	public String getIBAN() {
 		return IBAN;
 	}
 	public static void ferTransferencia(BaseDeDadesV BDVirtual, String IBAN){
 		Scanner Lector = new Scanner(System.in);
-		Double y;
-		String x;
 		System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
-		x = Lector.next();
-		System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
-		y = Lector.nextDouble();	
-		
+		String IBANdesti = Lector.next();
+		ComptaBancaria CCOrigen=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		ComptaBancaria CCDesti=BDVirtual.CercaComptaBancariaperIBAN(null, IBANdesti);
+		boolean sortir=false;
+		while(!sortir){
+			System.out.println("Concepte de la transferència?");
+			String Concepte=Lector.nextLine();
+			if(CCDesti!=null){
+				System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
+				Double Quantitat = Lector.nextDouble();;
+					while (Quantitat<0){
+						System.out.println("La quantitat a ingressar ha des ser un nombre positiu o 0");
+						Lector.nextDouble();	
+					}
+					CCOrigen.RestaSaldo(Quantitat);
+					CCDesti.SumaSaldo(Quantitat);
+					BDVirtual.CercaComptaBancariaperIBAN(CCOrigen, IBAN);
+					BDVirtual.CercaComptaBancariaperIBAN(CCDesti, IBANdesti);
+					System.out.println("S'ha fet la transferència amb èxit");
+				sortir=true;
+			}else {
+				System.out.println("El IBAN no és vàlid. Voleu tornar-ho a intentar?");
+				System.out.println("   1- Si");
+				System.out.println("   2- No");
+				Scanner scan = new Scanner(System.in);
+				int resposta = scan.nextInt();
+				
+				if(resposta==1)
+					sortir=false;
+				else sortir = true;
+				
+			}}
 	}
 	}
