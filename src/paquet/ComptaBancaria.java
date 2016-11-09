@@ -1,5 +1,6 @@
 package paquet;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -94,7 +95,8 @@ public class ComptaBancaria {
 				System.out.println("La quantitat ha de ser major a 10€. ");
 				Quantitat = Lector.nextDouble();
 			}
-			CCtemporal.SumaSaldo(Quantitat);
+			String Concepte = "Ingrés";
+			CCtemporal.SumaSaldo(Quantitat, Concepte);
 			BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
 			System.out.println("S'ha fet l'ingrés amb èxit");	
 			
@@ -120,8 +122,10 @@ public class ComptaBancaria {
 			while(Quantitat<10){
 				System.out.println("La quantitat ha de ser major a 10€. ");
 				Quantitat = Lector.nextDouble();
+				
 			}
-			CCtemporal.RestaSaldo(Quantitat);
+			String Concepte = "Extracció";
+			CCtemporal.RestaSaldo(Quantitat, Concepte);
 			BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
 			System.out.println("S'ha fet l'extraccíó amb èxit");	
 			
@@ -207,13 +211,15 @@ public class ComptaBancaria {
 		System.out.println("Concepte de la transferència?");
 		String Concepte=Lector.nextLine();
 		ComptaBancaria CCOrigen=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
-		ComptaBancaria CCDesti=BDVirtual.CercaComptaBancariaperIBAN(null, IBANdesti);
+		
 		boolean sortir=false;
 		while(!sortir){
 			
 			System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
 			String IBANdesti = Lector.next();
+			ComptaBancaria CCDesti=BDVirtual.CercaComptaBancariaperIBAN(null, IBANdesti);
 			if(CCDesti!=null){
+				
 				System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
 				Double Quantitat = Lector.nextDouble();;
 					while (Quantitat<0){
