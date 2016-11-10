@@ -138,7 +138,8 @@ public class BaseDeDadesV {
 			 Client cli = null;
 			 ComptaBancaria CCretorn =null;
 			    for (int i=0;i<LlistaClients.size();i++) {
-			    	LlistaClients.get(i);
+			    	cli = LlistaClients.get(i);
+			    	
 					for (int k=0;k<cli.getLlistaComptesdelClient().size();k++) {
 						LlistaClients.get(i);
 						if (cli.getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
@@ -156,6 +157,26 @@ public class BaseDeDadesV {
 			    return CCretorn;
 			
 		}
+		
+		
+		public void eliminarComptaBancaria(String IBAN){
+			 Client cli = null;
+			 
+			    for (int i=0;i<LlistaClients.size();i++) {
+			    	cli = LlistaClients.get(i);
+					for (int k=0;k<cli.getLlistaComptesdelClient().size();k++) {
+						LlistaClients.get(i);
+						if (cli.getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
+			    			LlistaClients.get(i);
+							cli.getLlistaComptesdelClient().remove(k);
+								
+			    			}
+			    			break;
+			        }
+					}
+			    }
+
+		
 		
 		
 		public Banquer CercaBanquerperDNI(String DNI) {
@@ -180,6 +201,6 @@ public class BaseDeDadesV {
 		    return cli;
 		}
 		
-	
+
 	
 }
