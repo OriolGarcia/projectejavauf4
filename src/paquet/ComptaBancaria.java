@@ -12,9 +12,7 @@ import java.util.Date;
 public class ComptaBancaria {
    private String IBAN;
    private Double Saldo;
-   private Double Deutes;
    private String PIN;
-   private String Historial;
    private String numeroCompta;
    private String numerodecontrol1;
    private String numerodecontrol2;

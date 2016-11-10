@@ -45,7 +45,7 @@ public class BaseDeDadesV {
 				
 				
 						
-		public Client AfegirClientaBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
+		private Client AfegirClientaBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
 				String codiJavaBank, String codiSucursal, String ddMMyyyyAlta){
 			
 			
@@ -79,7 +79,7 @@ public class BaseDeDadesV {
 		}
 		
 		
-		public Banquer AfegirBanquerBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
+		private Banquer AfegirBanquerBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
 				String codiJavaBank, String contrasenya){
 			
 			String	patro="dd-MM-yyyy";

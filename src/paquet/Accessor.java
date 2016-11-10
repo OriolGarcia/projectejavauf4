@@ -30,7 +30,6 @@ public class Accessor {
 				ValidaClient( BDVirtual);
 				return 1;
 			case 3:
-				InfoBanc();
 				return 1;
 			case 4:
 				return 0;
@@ -78,6 +77,5 @@ public class Accessor {
 				
 			}
 		
-		private static void InfoBanc(){}
 		
 }
