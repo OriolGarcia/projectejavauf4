@@ -13,7 +13,7 @@ public class Client extends Persona implements InterficieClient {
 	
 	private String Codisucursal;
 	private Date datadAlta;
-	public static ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
+	public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
 
 	// constructor
 	public Client(String nom, String cognoms, String dni, Date dataNaixement, String Codipais, String codiJavaBank,
@@ -33,7 +33,7 @@ public class Client extends Persona implements InterficieClient {
 			
 	// getters i setters	
 	
-	public static ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
+	public ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
 		return LlistaComptesdelClient;
 	}
 
@@ -68,13 +68,13 @@ public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		Client cli = BDVirtual.CercaClientperDNI(Dni);
 		System.out.println("Escull en quina de les teves comptes vols fer les operacions");
 		int opcio= -1;
-		while (opcio<1|| opcio>Client.LlistaComptesdelClient.size()){
-		for(int i=0;i<Client.LlistaComptesdelClient.size();i++){
-			System.out.println((i+1)+" - IBAN:"+Client.LlistaComptesdelClient.get(i).getIBAN());	
+		while (opcio<1|| opcio> cli.LlistaComptesdelClient.size()){
+		for(int i=0;i<cli.LlistaComptesdelClient.size();i++){
+			System.out.println((i+1)+" - IBAN:"+cli.LlistaComptesdelClient.get(i).getIBAN());	
 		}
 		opcio = EntradaDades.Enter();
 		}
-		String IBAN=Client.LlistaComptesdelClient.get(opcio-1).getIBAN();
+		String IBAN=cli.LlistaComptesdelClient.get(opcio-1).getIBAN();
 		ComptaBancaria.Menudoperacions(BDVirtual,IBAN);
 	}
 	

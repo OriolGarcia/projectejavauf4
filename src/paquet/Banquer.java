@@ -183,23 +183,18 @@ public class Banquer extends Persona implements InterficieBanquer {
 	
 	
 	public static void donardAltaComptaBancaria(BaseDeDadesV BDVirtual){
-		System.out.println("Saldo inicial a ingressar: ");
-		Double saldoInicial = Lector.nextDouble();
-		
-		System.out.println("Nou PIN: ");
-		String PIN = Lector.next();
-		
-		System.out.println("Codi pais: ");
-		String codiPais = Lector.next();
-		
-		System.out.print("Codi del banc: ");
-		String codiJavaBank = Lector.next();
-		
-		System.out.println("Codi sucursal: ");
-		String codiSucursal = Lector.next();
-		
-		ComptaBancaria NovaCompta = new ComptaBancaria(saldoInicial,PIN,codiPais,codiJavaBank,codiSucursal);
-		Client.getLlistaComptesdelClient().add(NovaCompta);
+		System.out.println("DNI del client: ");
+		String dni= EntradaDades.Cadena();
+		Client cli=BDVirtual.CercaClientperDNI(dni);
+		if (cli==null){
+		System.out.println("PIN per la nova compta bancaria: ");
+		String PIN = EntradaDades.Cadena();
+		System.out.println("Quantitat a ingressar en la nova compta bancaria. ");
+		Double Quantitat = EntradaDades.Double();
+		cli.AfegirComptaBancariaAmbParametres(PIN, Quantitat);
+		menudOperacionsBanquer(BDVirtual);
+		}else
+			System.out.println("No s'ha trobat cap Client amb aquest DNI. ");
 		menudOperacionsBanquer(BDVirtual);
 	}
 	

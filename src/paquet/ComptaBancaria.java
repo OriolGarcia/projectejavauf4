@@ -223,7 +223,7 @@ public class ComptaBancaria {
 			if(CCDesti!=null){
 				
 				System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
-				Double Quantitat = EntradaDades.Double();;
+				Double Quantitat = EntradaDades.Double();
 					while (Quantitat<0){
 						System.out.println("La quantitat a ingressar ha des ser un nombre positiu o 0");
 						EntradaDades.Double();	
