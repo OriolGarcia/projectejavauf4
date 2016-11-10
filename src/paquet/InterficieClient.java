@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public interface
-InterficieClient {
+public interface InterficieClient {
+	
 	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
 	Scanner Lector = new Scanner(System.in);
 	// constructor

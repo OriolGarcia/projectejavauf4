@@ -18,7 +18,7 @@ public class Accessor {
 			 System.out.println("Que vols fer? Escull opcio escrivint un numero" );
 			 System.out.println("      1 - Mode Banquer (només disponible des de a centraleta) " );
 			 System.out.println("      2 - Mode Client " );
-			 System.out.println("      3 - Veure informació publica del banc " );
+			 System.out.println("      3 - Afegir diners de forma anònima " );
 			 System.out.println("      4 - Tancar programa " );
 			 
 			 resposta = EntradaDades.Enter();
