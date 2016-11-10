@@ -49,22 +49,13 @@ public class ComptaBancaria {
 		}
 		numComptes++;
 	}
-	public static void CanviarPIN(BaseDeDadesV BDVirtual,String IBAN) {
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
-		
-			System.out.println("Quin és el PIN actual?");
-			String OldPIN= EntradaDades.Cadena();
-			if (CCtemporal.getPIN().equals(OldPIN)){
-				System.out.println("Posa el nou PIN");
-				String NewPIN= EntradaDades.Cadena();
-				if (NewPIN.length()==4&&Main.isNumeric(NewPIN))
-					CCtemporal.PIN = NewPIN;
-				else System.out.println("El PIN ha de tenir 4 numeros" );
-			}
-			else  System.out.println("El PIN antic és incorrecte. No s'ha pogut canviar el PIN" );
-			
-		}
+	
 
+	
+	public String getIBAN() {
+		return IBAN;
+	}
+	
 	public String getPIN() {
 		return PIN;
 	}
@@ -79,67 +70,13 @@ public class ComptaBancaria {
 		Saldo-=Quantitat;
 		LlistaMoviments.add(new MovimentBancari(data, concepte, -Quantitat));
 	}
-/**
- * Aqui ens demanarà l'IBAN, en cas de possar l'IBAN incorrecte, ens mostrarà un missatge d'error
- * Després Ingresarem la quantitat desitjada.
- * Si no posem més de 10€ ens dirà que ha de ser major que 10.
- */
-	
-	public static void ingressarDiners(BaseDeDadesV BDVirtual){
-		
-		System.out.println("Escrigui el IBAN complet de la compta destinataria");
-		String IBAN = EntradaDades.Cadena();
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
-		if(CCtemporal!=null){
-			Double Quantitat;
-			System.out.println("Ingressi la quantitat de diners desitjada, si us plau");
-			Quantitat = EntradaDades.Double();
-			while(Quantitat<10){
-				System.out.println("La quantitat ha de ser major a 10€. ");
-				Quantitat = EntradaDades.Double();
-			}
-			String Concepte = "Ingrés";
-			CCtemporal.SumaSaldo(Quantitat, Concepte);
-			BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
-			System.out.println("S'ha fet l'ingrés amb èxit");	
-			
-		}
-		else{
-			
-			System.out.println("Aquest IBAN no pertany a cap compta bancaria registrada. ");
-		}
-	}
+
 	
 	/**
 	 * Creem el menú, on se'ns demanarà el PIN de la compta, tenim 3 intents
 	 * Quan haguem entrar podrem elegir diferentes opcions
 	 */
 	
-	private static void TreureDiners(BaseDeDadesV BDVirtual, String IBAN) {
-		
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
-		if(CCtemporal!=null){
-			Double Quantitat;
-			System.out.println("Quina quantitat vol treure?");
-			Quantitat = EntradaDades.Double();
-			while(Quantitat<10){
-				System.out.println("La quantitat ha de ser major a 10€. ");
-				Quantitat = EntradaDades.Double();
-				
-			}
-			String Concepte = "Extracció";
-			CCtemporal.RestaSaldo(Quantitat, Concepte);
-			BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
-			System.out.println("S'ha fet l'extraccíó amb èxit");	
-			
-		}
-		
-	}
-	private static void ConusltaSaldo(BaseDeDadesV BDVirtual, String IBAN) {
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
-		System.out.println("En la compta "+IBAN+" hi ha "+ CCtemporal.Saldo+ " €");
-		
-	}
 	public static void Menudoperacions(BaseDeDadesV BDVirtual,String IBAN){
 		
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
@@ -201,11 +138,63 @@ public class ComptaBancaria {
 	}			
 	
 	
-	public String getIBAN() {
-		return IBAN;
-	}
 	
-	 public void UltimsMoviments(BaseDeDadesV BDVirtual,String IBAN){
+	/**
+	 * Aqui ens demanarà l'IBAN, en cas de possar l'IBAN incorrecte, ens mostrarà un missatge d'error
+	 * Després Ingresarem la quantitat desitjada.
+	 * Si no posem més de 10€ ens dirà que ha de ser major que 10.
+	 */
+		
+		public static void ingressarDiners(BaseDeDadesV BDVirtual){
+			
+			System.out.println("Escrigui el IBAN complet de la compta destinataria");
+			String IBAN = EntradaDades.Cadena();
+			ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+			if(CCtemporal!=null){
+				Double Quantitat;
+				System.out.println("Ingressi la quantitat de diners desitjada, si us plau");
+				Quantitat = EntradaDades.Double();
+				while(Quantitat<10){
+					System.out.println("La quantitat ha de ser major a 10€. ");
+					Quantitat = EntradaDades.Double();
+				}
+				String Concepte = "Ingrés";
+				CCtemporal.SumaSaldo(Quantitat, Concepte);
+				BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
+				System.out.println("S'ha fet l'ingrés amb èxit");	
+				
+			}
+			else{
+				
+				System.out.println("Aquest IBAN no pertany a cap compta bancaria registrada. ");
+			}
+		}
+	
+	
+	private static void TreureDiners(BaseDeDadesV BDVirtual, String IBAN) {
+			
+			ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+			if(CCtemporal!=null){
+				Double Quantitat;
+				System.out.println("Quina quantitat vol treure?");
+				Quantitat = EntradaDades.Double();
+				while(Quantitat<10){
+					System.out.println("La quantitat ha de ser major a 10€. ");
+					Quantitat = EntradaDades.Double();
+					
+				}
+				String Concepte = "Extracció";
+				CCtemporal.RestaSaldo(Quantitat, Concepte);
+				BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
+				System.out.println("S'ha fet l'extraccíó amb èxit");	
+				
+			}
+			
+		}
+	
+	
+	
+	public void UltimsMoviments(BaseDeDadesV BDVirtual,String IBAN){
 		 
 	}
 	
@@ -247,4 +236,28 @@ public class ComptaBancaria {
 			}
 			}
 	}
+	
+	public static void CanviarPIN(BaseDeDadesV BDVirtual,String IBAN) {
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		
+			System.out.println("Quin és el PIN actual?");
+			String OldPIN= EntradaDades.Cadena();
+			if (CCtemporal.getPIN().equals(OldPIN)){
+				System.out.println("Posa el nou PIN");
+				String NewPIN= EntradaDades.Cadena();
+				if (NewPIN.length()==4&&Main.isNumeric(NewPIN))
+					CCtemporal.PIN = NewPIN;
+				else System.out.println("El PIN ha de tenir 4 numeros" );
+			}
+			else  System.out.println("El PIN antic és incorrecte. No s'ha pogut canviar el PIN" );
+			
+		}
+	
+	private static void ConusltaSaldo(BaseDeDadesV BDVirtual, String IBAN) {
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		System.out.println("En la compta "+IBAN+" hi ha "+ CCtemporal.Saldo+ " €");
+		
+	}
+	
+	
 	}

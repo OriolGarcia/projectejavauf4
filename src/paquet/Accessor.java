@@ -73,7 +73,7 @@ public class Accessor {
 			
 			if (Usuari==null){System.out.println("No existeix cap client registrat amb aquest DNI");}
 			else {
-					Client.LlistarComptesBancaries(BDVirtual,Dni);
+					Usuari.LlistarComptesBancaries(BDVirtual,Dni);
 			}
 				
 			}

@@ -63,7 +63,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 			donardAltaBanquer(BDVirtual);
 			return 1;
 		case 3:
-			donardAltaComptaBancaria(BDVirtual);
+			//donardAltaComptaBancaria(BDVirtual);
 			return 1;
 		case 4:
 			donarDeBaixaClient(BDVirtual);
@@ -72,7 +72,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 			donarDeBaixaBanquer(BDVirtual);
 			return 1;
 		case 6:
-			donarDeBaixaComptaBancaria();
+			donarDeBaixaComptaBancaria(BDVirtual);
 			return 1;
 		case 7: 
 			venHipotecaoCredit();
@@ -195,13 +195,12 @@ public class Banquer extends Persona implements InterficieBanquer {
 		menudOperacionsBanquer(BDVirtual);
 		}else
 			System.out.println("No s'ha trobat cap Client amb aquest DNI. ");
-		menudOperacionsBanquer(BDVirtual);
 	}
 	
 	
 	public static void donarDeBaixaClient(BaseDeDadesV BDVirtual) {
 		System.out.println("Dni: ");
-		String Dni = Lector.next();
+		String Dni = EntradaDades.Cadena();
 		Client UsuariDel = BDVirtual.CercaClientperDNI(Dni);
 		if(UsuariDel == null){
 			System.out.println("No existeix cap client amb aquest dni.");
@@ -210,7 +209,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 		System.out.println("Donar de baixa el Client amb dni "+Dni+" ?");
 		System.out.println("	1 - Si");
 		System.out.println("	2 - No");
-		int r = Lector.nextInt();
+		int r = EntradaDades.Enter();
 		switch(r){
 		case 1:
 			BDVirtual.getLlistaClients().remove(UsuariDel);
@@ -224,7 +223,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 	
 	public static void donarDeBaixaBanquer(BaseDeDadesV BDVirtual){
 		System.out.println("Dni: ");
-		String Dni = Lector.next();
+		String Dni = EntradaDades.Cadena();
 		Banquer UsuariDel = BDVirtual.CercaBanquerperDNI(Dni);
 		if(UsuariDel == null){
 			System.out.println("No existeix cap banquer amb aquest dni.");
@@ -241,7 +240,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 		System.out.println("Donar de baixa el Banquer amb dni "+Dni+" ?");
 		System.out.println("	1 - Si");
 		System.out.println("	2 - No");
-		int r = Lector.nextInt();
+		int r = EntradaDades.Enter();
 		switch(r){
 		case 1:
 			BDVirtual.getLlistaClients().remove(UsuariDel);
@@ -254,8 +253,34 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}
 	
-	public static void donarDeBaixaComptaBancaria(){
-		
+	public static void donarDeBaixaComptaBancaria(BaseDeDadesV BDVirtual){
+		System.out.println("Ingresa el IBAN de la compta bancaria que vulguis donar de baixa: ");
+		String IBAN = EntradaDades.Cadena();
+		ComptaBancaria ComptaDel = BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		if(ComptaDel == null){
+			System.out.println("No existeix cap compta bancaria amb aquest IBAN");
+			menudOperacionsBanquer(BDVirtual);
+		}else{
+			System.out.println("PIN: ");
+			String PIN = EntradaDades.Cadena();
+			if(!PIN.equals(ComptaDel.getPIN())){
+				System.out.println("PIN incorrecte.");
+				menudOperacionsBanquer(BDVirtual);
+			}else{
+			
+			System.out.println("Donar de baixa la compta bancaria amb IBAN "+IBAN+" ?");
+			System.out.println("	1 - Si");
+			System.out.println("	2 - No");
+			int r = EntradaDades.Enter();
+			switch(r){
+			case 1:
+				//Client.getLlistaComptesdelClient().add(ComptaDel);
+				menudOperacionsBanquer(BDVirtual);
+			case 2:
+				menudOperacionsBanquer(BDVirtual);
+			}
+			}		
+		}
 	}
 	
 	public static void venHipotecaoCredit(){
@@ -266,7 +291,9 @@ public class Banquer extends Persona implements InterficieBanquer {
 		for(int i=0;i<BDVirtual.getLlistaClients().size();i++){
 			System.out.println(BDVirtual.getLlistaClients().get(i).getNom() + " "
 			+BDVirtual.getLlistaClients().get(i).getCognoms() + " "
-			+BDVirtual.getLlistaClients().get(i).getDni());
+			+BDVirtual.getLlistaClients().get(i).getDni() + " "
+			+BDVirtual.getLlistaClients().get(i).getCodiPais() + " "
+			+BDVirtual.getLlistaClients().get(i).getCodiJavaBank());
 		}
 	menudOperacionsBanquer(BDVirtual);
 	}

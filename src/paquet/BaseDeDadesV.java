@@ -138,9 +138,12 @@ public class BaseDeDadesV {
 			 Client cli = null;
 			 ComptaBancaria CCretorn =null;
 			    for (int i=0;i<LlistaClients.size();i++) {
-			    	for (int k=0;k<LlistaClients.get(i).getLlistaComptesdelClient().size();k++)
-			    		if (LlistaClients.get(i).getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
-			    			CCretorn=LlistaClients.get(i).getLlistaComptesdelClient().get(k);
+			    	LlistaClients.get(i);
+					for (int k=0;k<cli.getLlistaComptesdelClient().size();k++) {
+						LlistaClients.get(i);
+						if (cli.getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
+			    			LlistaClients.get(i);
+							CCretorn=cli.getLlistaComptesdelClient().get(k);
 			    			if (CC!=null){
 			    				
 			    				LlistaClients.get(i).SubstitueixCC(k,CC);
@@ -148,6 +151,7 @@ public class BaseDeDadesV {
 			    			}
 			    			break;
 			        }
+					}
 			    }
 			    return CCretorn;
 			
