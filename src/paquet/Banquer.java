@@ -63,7 +63,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 			donardAltaBanquer(BDVirtual);
 			break;
 		case 3:
-			//donardAltaComptaBancaria(BDVirtual);
+			donardAltaComptaBancaria(BDVirtual);
 			break;
 		case 4:
 			donarDeBaixaClient(BDVirtual);
@@ -190,16 +190,16 @@ public class Banquer extends Persona implements InterficieBanquer {
 		String dni= EntradaDades.Cadena();
 		Client cli=BDVirtual.CercaClientperDNI(dni);
 		if (cli==null){
-		System.out.println("PIN per la nova compta bancaria: ");
+			System.out.println("No s'ha trobat cap Client amb aquest DNI. ");
+		
+		}else{
+			System.out.println("PIN per la nova compta bancaria: ");
 		String PIN = EntradaDades.Cadena();
 		System.out.println("Quantitat a ingressar en la nova compta bancaria. ");
 		Double Quantitat = EntradaDades.Double();
 		cli.AfegirComptaBancariaAmbParametres(PIN, Quantitat);
-		
-		}else
-			System.out.println("No s'ha trobat cap Client amb aquest DNI. ");
 	}
-	
+	}
 	
 	public static void donarDeBaixaClient(BaseDeDadesV BDVirtual) {
 		System.out.println("Dni: ");

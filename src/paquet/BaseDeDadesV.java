@@ -94,7 +94,7 @@ public class BaseDeDadesV {
 				return null;}
 				
 				LlistaBanquers.add(B1);
-				System.out.println("S'ha inserit un Banquer a la BD amb DNI: "+ B1.getDni());
+				System.out.println("S'ha inserit un Banquer a la BD amb DNI: "+ B1.getDni() + " amb contrasenya: " + B1.getContrasenya());
 				
 				return B1;
 			} catch (ParseException e) {
