@@ -280,11 +280,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 			}}		
 		}
 
-	public static void donarDeBaixaComptaBancaria(){
-		
-
-	}
-		
+			
 		
 	private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
 		for(int i=0;i<BDVirtual.getLlistaClients().size();i++){
