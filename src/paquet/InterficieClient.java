@@ -9,7 +9,9 @@ InterficieClient {
 	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
 	Scanner Lector = new Scanner(System.in);
 	// constructor
-	public ArrayList<ComptaBancaria> getLlistaComptesdelClient();
+	public static ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
+		return null;
+	}
 
 	public void setLlistaComptesdelClient(ArrayList<ComptaBancaria> llistaComptesdelClient);
 

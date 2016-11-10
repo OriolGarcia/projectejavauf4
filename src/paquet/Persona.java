@@ -1,6 +1,6 @@
 package paquet;
 import java.util.Date;
-
+import java.util.Scanner;
 import java.text.SimpleDateFormat;
 
 /** 
@@ -66,7 +66,11 @@ public abstract class Persona {
 	}
 	
 	public void setDni(String dni){
-		this.dni = dni;
+		while(dni.length()!=8){
+			System.out.println("El dni ha de tenir una mida de 8. Insereixi de nou el dni.");
+				Scanner Lector = new Scanner(System.in);
+				dni = Lector.nextLine();
+		}
 	}
 	
 	public Date getDataNaixement(){

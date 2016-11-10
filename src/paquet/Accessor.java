@@ -14,7 +14,7 @@ public class Accessor {
 		public static int Menu(BaseDeDadesV BDVirtual){
 			
 			 int resposta;
-			 System.out.println("Benvingut a Gringotts Bank" );
+			 System.out.println("\n\nBenvingut a Gringotts Bank" );
 			 System.out.println("Que vols fer? Escull opcio escrivint un numero" );
 			 System.out.println("      1 - Mode Banquer (només disponible des de a centraleta) " );
 			 System.out.println("      2 - Mode Client " );
