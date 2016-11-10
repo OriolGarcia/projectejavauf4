@@ -2,7 +2,6 @@ package paquet;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 /**
  * 
@@ -10,12 +9,12 @@ import java.util.Scanner;
  *
  */
 
-public class Client extends Persona {
+public class Client extends Persona implements InterficieClient {
 	
 	private String Codisucursal;
 	private Date datadAlta;
 	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
-	Scanner Lector = new Scanner(System.in);
+
 	// constructor
 	public Client(String nom, String cognoms, String dni, Date dataNaixement, String Codipais, String codiJavaBank,
 			 String Codisucursal, Date datadAlta){
@@ -24,8 +23,8 @@ public class Client extends Persona {
 		
 		while(Codisucursal.length()!=4||!Main.isNumeric(Codisucursal)){
 			System.out.println("El codi de de la sucursal  ha de ser un numero d 4 digits. Insereixi un nou codi.");
-					Scanner Lector = new Scanner(System.in);
-					Codisucursal = Lector.nextLine();
+					
+					Codisucursal = EntradaDades.Cadena();
 		}
 		this.Codisucursal = Codisucursal;
 		this.datadAlta = datadAlta;
@@ -46,7 +45,7 @@ public class Client extends Persona {
 		while(Codisucursal.length()!=4||Main.isNumeric(Codisucursal)){
 			System.out.println("El codi de del Bank ha de ser un numero d 4 digits. Insereixi un nou codi.");
 			
-					Codisucursal = Lector.nextLine();
+					Codisucursal = EntradaDades.Cadena();
 		}
 		return Codisucursal;
 	}
@@ -63,7 +62,7 @@ public class Client extends Persona {
 		this.datadAlta = datadAlta;
 		return null;
 	}
-	public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
+public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		
 		
 		Client cli = BDVirtual.CercaClientperDNI(Dni);
@@ -72,21 +71,21 @@ public class Client extends Persona {
 		for(int i=0;i<cli.LlistaComptesdelClient.size();i++){
 			System.out.println((i+1)+" - IBAN:"+cli.LlistaComptesdelClient.get(i).getIBAN());	
 		}
-		int opcio = cli.Lector.nextInt();
+		int opcio = EntradaDades.Enter();
 		String IBAN=cli.LlistaComptesdelClient.get(opcio-1).getIBAN();
 		ComptaBancaria.Menudoperacions(BDVirtual,IBAN);
 	}
 	
 	public boolean AfegirComptaBancaria(){
 		System.out.println("Quin PIN vol colocar al compte? (4 digits enters)");
-		String PIN=Lector.nextLine();
+		String PIN=EntradaDades.Cadena();
 		while (PIN.length()!=4&&!Main.isNumeric(PIN)){
 			System.out.println("PIN erroni (4 digits enters)");
-			 PIN=Lector.nextLine();
+			 PIN=EntradaDades.Cadena();
 			
 		}
 		System.out.println("Quina quantitat de diners vol ingressar?");
-		double Saldoinicial=Lector.nextDouble();
+		double Saldoinicial=EntradaDades.Double();
 		 try{
 		ComptaBancaria NovaCompta =new ComptaBancaria(Saldoinicial,PIN,Codipais,codiJavaBank,Codisucursal);
 		LlistaComptesdelClient.add(NovaCompta);

@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
+
 
 /**
  * 
@@ -12,9 +12,9 @@ import java.util.Scanner;
  *
  */
 
-public class Banquer extends Persona {
+public class Banquer extends Persona implements InterficieBanquer {
 	private String contrasenya;
-	static Scanner Lector = new Scanner(System.in);
+	
 	// constructor
 	public Banquer(String nom, String cognoms, String dni, Date dataNaixement, String pais, String codiJavaBank,
 					String contrasenya){
@@ -49,8 +49,8 @@ public class Banquer extends Persona {
 		System.out.println("	8 - Hipoteques");
 		System.out.println("	9 - Sortir");
 		
-		Scanner scan = new Scanner(System.in);
-		resposta = scan.nextInt();
+		
+		resposta = EntradaDades.Enter();
 		
 		switch(resposta){
 		case 1:
@@ -87,16 +87,16 @@ public class Banquer extends Persona {
 	
 	public static void donardAltaClient(BaseDeDadesV BDVirtual){
 		System.out.println("Nom: ");
-		String nom = Lector.nextLine();
+		String nom = EntradaDades.Cadena();
 		
 		System.out.println("Cognoms: ");
-		String cognoms = Lector.nextLine();
+		String cognoms = EntradaDades.Cadena();
 		
 		System.out.println("Dni: ");
-		String dni = Lector.nextLine();
+		String dni = EntradaDades.Cadena();
 		
 		System.out.println("Data de naixement: ");
-		String date = Lector.nextLine();
+		String date = EntradaDades.Cadena();
 		String dateFormat = "dd-MM-yyyy";
 		DateFormat format = new SimpleDateFormat(dateFormat);
 		Date dataNaixement = null;
@@ -108,16 +108,16 @@ public class Banquer extends Persona {
 		}
 		
 		System.out.println("Codi del pais: ");
-		String codiPais = Lector.nextLine();
+		String codiPais = EntradaDades.Cadena();
 		
 		System.out.println("Codi JavaBank: ");
-		String codiJavaBank = Lector.nextLine();
+		String codiJavaBank = EntradaDades.Cadena();
 		
 		System.out.println("Codi sucursal: ");
-		String codiSucursal = Lector.nextLine();
+		String codiSucursal = EntradaDades.Cadena();
 		
 		System.out.println("Data d'alta: ");
-		String date2 = Lector.nextLine();
+		String date2 = EntradaDades.Cadena();
 		Date datadAlta = null;
 		try {
 			datadAlta = format.parse(date2);
@@ -138,16 +138,16 @@ public class Banquer extends Persona {
 	
 	public static void donardAltaBanquer(BaseDeDadesV BDVirtual){
 		System.out.println("Nom: ");
-		String nom = Lector.nextLine();
+		String nom = EntradaDades.Cadena();
 		
 		System.out.println("Cognoms: ");
-		String cognoms = Lector.nextLine();
+		String cognoms = EntradaDades.Cadena();
 		
 		System.out.println("Dni: ");
-		String dni = Lector.nextLine();
+		String dni = EntradaDades.Cadena();
 		
 		System.out.println("Data de naixement: ");
-		String date = Lector.nextLine();
+		String date = EntradaDades.Cadena();
 		String dateFormat = "dd-MM-yyyy";
 		DateFormat format = new SimpleDateFormat(dateFormat);
 		Date dataNaixement = null;
@@ -159,13 +159,13 @@ public class Banquer extends Persona {
 		}
 		
 		System.out.println("Codi del pais: ");
-		String codiPais = Lector.nextLine();
+		String codiPais = EntradaDades.Cadena();
 		
 		System.out.println("Codi JavaBank: ");
-		String codiJavaBank = Lector.nextLine();
+		String codiJavaBank = EntradaDades.Cadena();
 		
 		System.out.println("Contrsenya: ");
-		String contrasenya = Lector.nextLine();
+		String contrasenya = EntradaDades.Cadena();
 		
 		Banquer NouBanquer = new Banquer(nom,cognoms,dni,dataNaixement,codiPais,codiJavaBank,contrasenya);
 		if(BDVirtual.JaExisteixBanquer(NouBanquer)){

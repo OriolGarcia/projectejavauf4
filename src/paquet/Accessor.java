@@ -1,6 +1,6 @@
 package paquet;
 
-import java.util.Scanner;
+
 
 /**
  * 
@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 
 public class Accessor {
-			private static Scanner Lector = new Scanner(System.in);
+			
 			BaseDeDadesV BDVirtual;
 		public static int Menu(BaseDeDadesV BDVirtual){
 			
@@ -21,7 +21,7 @@ public class Accessor {
 			 System.out.println("      3 - Veure informació publica del banc " );
 			 System.out.println("      4 - Tancar programa " );
 			 
-			 resposta = Lector.nextInt();
+			 resposta = EntradaDades.Enter();
 			switch (resposta){
 			case 1:
 				ValidaBanquer(BDVirtual);
@@ -42,17 +42,17 @@ public class Accessor {
 		
 		private static void ValidaBanquer(BaseDeDadesV BDVirtual){
 			System.out.println("Posa el teu DNI");
-			String Dni = Lector.next();
+			String Dni = EntradaDades.Cadena();
 			Banquer Usuari = BDVirtual.CercaBanquerperDNI(Dni);
 			if (Usuari==null){System.out.println("No existeix cap banquer registrat amb aquest DNI");}
 			else {
 				int i = 3;
 				System.out.println("Contrasenya: ");
-				String contrasenya = Lector.next();
+				String contrasenya = EntradaDades.Cadena();
 				while(!contrasenya.equals(Usuari.getContrasenya())&&i>0){
 					System.out.println("Contrasenya incorrecta, et queden "+i+" intents.");
 					i--;
-					contrasenya = Lector.next();
+					contrasenya = EntradaDades.Cadena();
 				}
 
 				if(i==0){
@@ -68,7 +68,7 @@ public class Accessor {
 		
 		private static void ValidaClient(BaseDeDadesV BDVirtual){
 			System.out.println("Posa el teu DNI");
-			String Dni = Lector.next();
+			String Dni = EntradaDades.Cadena();
 			Client Usuari=BDVirtual.CercaClientperDNI(Dni);
 			
 			if (Usuari==null){System.out.println("No existeix cap client registrat amb aquest DNI");}

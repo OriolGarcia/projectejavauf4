@@ -1,6 +1,6 @@
 package paquet;
 import java.util.Date;
-import java.util.Scanner;
+
 import java.text.SimpleDateFormat;
 
 /** 
@@ -27,14 +27,14 @@ public abstract class Persona {
 		this.dataNaixement = dataNaixement;
 		while(Codipais.length()!=2||!Nomeslletres(Codipais)){
 			System.out.println("El codi de del pais han de ser 2 lletres. Introdueix un codi pais vàlid per a" + nom);
-					Scanner Lector = new Scanner(System.in);
-				 Codipais = Lector.nextLine();
+				
+				 Codipais = EntradaDades.Cadena();
 		}
 		this.Codipais = Codipais;
 		while(codiJavaBank.length()!=4||!isNumeric(codiJavaBank)){
 			System.out.println("El codi de del Bank ha de ser un numero d 4 digits. Introdueix codi del Banc vàlid per a" + nom);
-					Scanner Lector = new Scanner(System.in);
-					codiJavaBank = Lector.nextLine();
+				
+					codiJavaBank = EntradaDades.Cadena();
 		}
 		this.codiJavaBank = codiJavaBank;
 	}
@@ -85,8 +85,8 @@ public abstract class Persona {
 	public void setPais(String Codipais){
 		while(Codipais.length()!=2){
 			System.out.println("El codi de pais ha de tenir una mida de 2. Insereixi un nou codi.");
-					Scanner Lector = new Scanner(System.in);
-					Codipais = Lector.nextLine();
+					
+					Codipais = EntradaDades.Cadena();
 		}
 		
 		this.Codipais = Codipais;
@@ -100,8 +100,8 @@ public abstract class Persona {
 	public void setCodiJavaBank(String codiJavaBank){
 		while(codiJavaBank.length()!=4||isNumeric(codiJavaBank)){
 			System.out.println("El codi de del Bank ha de ser un numero d 4 digits. Insereixi un nou codi.");
-					Scanner Lector = new Scanner(System.in);
-					codiJavaBank = Lector.nextLine();
+					
+					codiJavaBank = EntradaDades.Cadena();
 		}
 		this.codiJavaBank = codiJavaBank;
 	}

@@ -2,7 +2,6 @@ package paquet;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 /**
  * 
@@ -52,12 +51,12 @@ public class ComptaBancaria {
 	}
 	public static void CanviarPIN(BaseDeDadesV BDVirtual,String IBAN) {
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
-		Scanner Lector = new Scanner(System.in);
+		
 			System.out.println("Quin és el PIN actual?");
-			String OldPIN= Lector.nextLine();
+			String OldPIN= EntradaDades.Cadena();
 			if (CCtemporal.getPIN().equals(OldPIN)){
 				System.out.println("Posa el nou PIN");
-				String NewPIN= Lector.nextLine();
+				String NewPIN= EntradaDades.Cadena();
 				if (NewPIN.length()==4&&Main.isNumeric(NewPIN))
 					CCtemporal.PIN = NewPIN;
 				else System.out.println("El PIN ha de tenir 4 numeros" );
@@ -87,17 +86,17 @@ public class ComptaBancaria {
  */
 	
 	public static void ingressarDiners(BaseDeDadesV BDVirtual){
-		Scanner Lector = new Scanner(System.in);
+		
 		System.out.println("Escrigui el IBAN complet de la compta destinataria");
-		String IBAN = Lector.nextLine();
+		String IBAN = EntradaDades.Cadena();
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		if(CCtemporal!=null){
 			Double Quantitat;
 			System.out.println("Ingressi la quantitat de diners desitjada, si us plau");
-			Quantitat = Lector.nextDouble();
+			Quantitat = EntradaDades.Double();
 			while(Quantitat<10){
 				System.out.println("La quantitat ha de ser major a 10€. ");
-				Quantitat = Lector.nextDouble();
+				Quantitat = EntradaDades.Double();
 			}
 			String Concepte = "Ingrés";
 			CCtemporal.SumaSaldo(Quantitat, Concepte);
@@ -117,15 +116,15 @@ public class ComptaBancaria {
 	 */
 	
 	private static void TreureDiners(BaseDeDadesV BDVirtual, String IBAN) {
-		Scanner Lector = new Scanner(System.in);
+		
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		if(CCtemporal!=null){
 			Double Quantitat;
 			System.out.println("Quina quantitat vol treure?");
-			Quantitat = Lector.nextDouble();
+			Quantitat = EntradaDades.Double();
 			while(Quantitat<10){
 				System.out.println("La quantitat ha de ser major a 10€. ");
-				Quantitat = Lector.nextDouble();
+				Quantitat = EntradaDades.Double();
 				
 			}
 			String Concepte = "Extracció";
@@ -142,14 +141,14 @@ public class ComptaBancaria {
 		
 	}
 	public static void Menudoperacions(BaseDeDadesV BDVirtual,String IBAN){
-		Scanner Lector = new Scanner(System.in);
+		
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		
 		if(CCtemporal!=null){
 			String PIN=""; int n=3;
 			while((!PIN.equals(CCtemporal.PIN)&&(n>0))){
 				System.out.println("Escrigui el PIN per la compta");
-				PIN = Lector.nextLine();
+				PIN = EntradaDades.Cadena();
 				if(!PIN.equals(CCtemporal.PIN)){
 					n--;
 					System.out.println("PIN incorrecte. Queden "+n+" intents.");
@@ -171,8 +170,8 @@ public class ComptaBancaria {
 						System.out.println("	6 - Canviar el PIN");
 						System.out.println("	7 - Sortir");
 						
-						Scanner scan = new Scanner(System.in);
-						resposta = scan.nextInt();
+						
+						resposta = EntradaDades.Enter();
 					
 						switch(resposta){
 						
@@ -211,24 +210,23 @@ public class ComptaBancaria {
 	}
 	
 	public static void ferTransferencia(BaseDeDadesV BDVirtual, String IBAN){
-		Scanner Lector = new Scanner(System.in);
 		System.out.println("Concepte de la transferència?");
-		String Concepte=Lector.nextLine();
+		String Concepte=EntradaDades.Cadena();
 		ComptaBancaria CCOrigen=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		
 		boolean sortir=false;
 		while(!sortir){
 			
 			System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
-			String IBANdesti = Lector.next();
+			String IBANdesti = EntradaDades.Cadena();
 			ComptaBancaria CCDesti=BDVirtual.CercaComptaBancariaperIBAN(null, IBANdesti);
 			if(CCDesti!=null){
 				
 				System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
-				Double Quantitat = Lector.nextDouble();;
+				Double Quantitat = EntradaDades.Double();;
 					while (Quantitat<0){
 						System.out.println("La quantitat a ingressar ha des ser un nombre positiu o 0");
-						Lector.nextDouble();	
+						EntradaDades.Double();	
 					}
 					CCOrigen.RestaSaldo(Quantitat, Concepte);
 					CCDesti.SumaSaldo(Quantitat, Concepte);
@@ -240,8 +238,7 @@ public class ComptaBancaria {
 				System.out.println("El IBAN no és vàlid. Voleu tornar-ho a intentar?");
 				System.out.println("   1- Si");
 				System.out.println("   2- No");
-				Scanner scan = new Scanner(System.in);
-				int resposta = scan.nextInt();
+				int resposta = EntradaDades.Enter();
 				
 				if(resposta==1)
 					sortir=false;
