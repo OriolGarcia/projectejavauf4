@@ -12,11 +12,17 @@ import java.util.Date;
 public class Client extends Persona implements InterficieClient {
 	
 	private String Codisucursal;
+<<<<<<< Upstream, based on branch 'master' of https://github.com/OriolGarcia/projectejavauf4
 	private Date datadAlta;
 
 	//public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
 
 	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
+=======
+	private Date datadAlta;
+	public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
+
+>>>>>>> e2df535 Coses
 
 	// constructor
 	public Client(String nom, String cognoms, String dni, Date dataNaixement, String Codipais, String codiJavaBank,
@@ -44,14 +50,7 @@ public class Client extends Persona implements InterficieClient {
 		LlistaComptesdelClient = llistaComptesdelClient;
 	}
 
-	public String sucursal(){
-		while(Codisucursal.length()!=4||Main.isNumeric(Codisucursal)){
-			System.out.println("El codi de del Bank ha de ser un numero d 4 digits. Insereixi un nou codi.");
-			
-					Codisucursal = EntradaDades.Cadena();
-		}
-		return Codisucursal;
-	}
+
 	
 	public void setSucursal(String Codisucursal){
 		this.Codisucursal = Codisucursal;
@@ -70,12 +69,17 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		
 		Client cli = BDVirtual.CercaClientperDNI(Dni);
 		System.out.println("Escull en quina de les teves comptes vols fer les operacions");
+<<<<<<< Upstream, based on branch 'master' of https://github.com/OriolGarcia/projectejavauf4
 		int opcio= -1;
 
 		while (opcio<1|| opcio> cli.LlistaComptesdelClient.size()){
 
 		while (opcio<1|| opcio>cli.LlistaComptesdelClient.size()){
 
+=======
+		int opcio= -1;
+		while (opcio<1|| opcio> cli.LlistaComptesdelClient.size()){
+>>>>>>> e2df535 Coses
 		for(int i=0;i<cli.LlistaComptesdelClient.size();i++){
 			System.out.println((i+1)+" - IBAN:"+cli.LlistaComptesdelClient.get(i).getIBAN());	
 		}
@@ -129,9 +133,6 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 	}
 	
 	
-		
-	public void veureDadesPersonalsPubliques(){
-		
-	}
+	
    
 }

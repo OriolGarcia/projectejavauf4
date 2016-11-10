@@ -90,11 +90,15 @@ public class BaseDeDadesV {
 				Date Dnaixement =  FormatData.parse(ddMMyyyyNaixement);
 				Banquer B1 =new Banquer(nom,Cognoms,dni,Dnaixement,CodiPais,
 						codiJavaBank,contrasenya);
-				if(JaExisteixBanquer(B1)){System.out.println("Ja existeix un banquer registrat amb DNI "+ dni); 
+				if(JaExisteixBanquer(B1)){System.out.println("Ja existeix un banquer registrat amb DNI "+ B1.getDni()); 
 				return null;}
 				
 				LlistaBanquers.add(B1);
+<<<<<<< Upstream, based on branch 'master' of https://github.com/OriolGarcia/projectejavauf4
 				System.out.println("S'ha inserit un Banquer a la BD amb DNI: "+ B1.getDni() + " amb contrasenya: " + B1.getContrasenya());
+=======
+				System.out.println("S'ha inserit un Banquer a la BD amb DNI: "+ B1.getDni()+"i amb contrasenya: "+B1.getContrasenya());
+>>>>>>> e2df535 Coses
 				
 				return B1;
 			} catch (ParseException e) {

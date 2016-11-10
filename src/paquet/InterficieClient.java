@@ -15,7 +15,6 @@ InterficieClient {
 
 	public void setLlistaComptesdelClient(ArrayList<ComptaBancaria> llistaComptesdelClient);
 
-	public String sucursal();
 	
 	public void setSucursal(String Codisucursal);
 	public Date getDatadAlta();
@@ -25,6 +24,5 @@ InterficieClient {
 	public void SubstitueixCC(int i,ComptaBancaria CC);
 	
 	public boolean AfegirComptaBancariaAmbParametres(String PIN,double Saldoinicial);	
-	public void veureDadesPersonalsPubliques();
 public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){}
 }
