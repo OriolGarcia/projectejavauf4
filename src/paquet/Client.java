@@ -67,11 +67,13 @@ public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		
 		Client cli = BDVirtual.CercaClientperDNI(Dni);
 		System.out.println("Escull en quina de les teves comptes vols fer les operacions");
-		
+		int opcio= -1;
+		while (opcio<1|| opcio>cli.LlistaComptesdelClient.size()){
 		for(int i=0;i<cli.LlistaComptesdelClient.size();i++){
 			System.out.println((i+1)+" - IBAN:"+cli.LlistaComptesdelClient.get(i).getIBAN());	
 		}
-		int opcio = EntradaDades.Enter();
+		opcio = EntradaDades.Enter();
+		}
 		String IBAN=cli.LlistaComptesdelClient.get(opcio-1).getIBAN();
 		ComptaBancaria.Menudoperacions(BDVirtual,IBAN);
 	}
