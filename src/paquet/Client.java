@@ -12,17 +12,11 @@ import java.util.Date;
 public class Client extends Persona implements InterficieClient {
 	
 	private String Codisucursal;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/OriolGarcia/projectejavauf4
-	private Date datadAlta;
 
-	//public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
-
-	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
-=======
 	private Date datadAlta;
 	public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
 
->>>>>>> e2df535 Coses
+
 
 	// constructor
 	public Client(String nom, String cognoms, String dni, Date dataNaixement, String Codipais, String codiJavaBank,
@@ -69,17 +63,9 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		
 		Client cli = BDVirtual.CercaClientperDNI(Dni);
 		System.out.println("Escull en quina de les teves comptes vols fer les operacions");
-<<<<<<< Upstream, based on branch 'master' of https://github.com/OriolGarcia/projectejavauf4
-		int opcio= -1;
-
-		while (opcio<1|| opcio> cli.LlistaComptesdelClient.size()){
-
-		while (opcio<1|| opcio>cli.LlistaComptesdelClient.size()){
-
-=======
 		int opcio= -1;
 		while (opcio<1|| opcio> cli.LlistaComptesdelClient.size()){
->>>>>>> e2df535 Coses
+
 		for(int i=0;i<cli.LlistaComptesdelClient.size();i++){
 			System.out.println((i+1)+" - IBAN:"+cli.LlistaComptesdelClient.get(i).getIBAN());	
 		}
@@ -88,7 +74,7 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		String IBAN=cli.LlistaComptesdelClient.get(opcio-1).getIBAN();
 		ComptaBancaria.Menudoperacions(BDVirtual,IBAN);
 	}
-}
+
 	
 	public boolean AfegirComptaBancaria(){
 		System.out.println("Quin PIN vol colocar al compte? (4 digits enters)");
