@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 
  * Aqui tenim la classe Banquer que hereta de persona, on tenim les caracteristiques de Banquer
- *
+ * Banquer
  */
 
 public class Banquer extends Persona implements InterficieBanquer {
