@@ -12,8 +12,7 @@ import java.util.ArrayList;
 
 public class BaseDeDadesV {
 		private String codiJavaBank;
-		private ArrayList<Client> LlistaClients= new ArrayList<Client>();
-		private ArrayList<Banquer> LlistaBanquers= new ArrayList<Banquer>();
+		
 		private ArrayList<Persona> LlistaPersones= new ArrayList<Persona>();
 		public void Predefinir(){
 				codiJavaBank = "0622";
@@ -72,12 +71,7 @@ public class BaseDeDadesV {
 				return null;
 			}
 		}
-		public ArrayList<Client> getLlistaClients() {
-			return LlistaClients;
-		}
-		public void setLlistaClients(ArrayList<Client> llistaClients) {
-			LlistaClients = llistaClients;
-		}
+
 		
 		public ArrayList<Persona> getLlistaPersones() {
 			return LlistaPersones;
@@ -115,13 +109,7 @@ public class BaseDeDadesV {
 			
 		
 		
-		public ArrayList<Banquer> getLlistaBanquer() {
-			return LlistaBanquers;
-		}
-		public void setLlistaBanquer(ArrayList<Banquer> llistaBanquer) {
-			LlistaBanquers = llistaBanquer;
-		}
-		
+
 		public boolean JaExisteixBanquer(Banquer ban) {
 		    
 		    for (Persona index : LlistaPersones) {
@@ -172,13 +160,13 @@ public class BaseDeDadesV {
 		public void eliminarComptaBancaria(String IBAN){
 			 Persona cli = null;
 			 
-			    for (int i=0;i<LlistaClients.size();i++) {
-			    	cli = LlistaClients.get(i);
+			    for (int i=0;i<LlistaPersones.size();i++) {
+			    	cli = LlistaPersones.get(i);
 			    	if (cli instanceof Client){
 					for (int k=0;k<((Client) cli).getLlistaComptesdelClient().size();k++) {
-						LlistaClients.get(i);
+						LlistaPersones.get(i);
 						if (((Client) cli).getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
-			    			LlistaClients.get(i);
+			    			LlistaPersones.get(i);
 			    			((Client) cli).getLlistaComptesdelClient().remove(k);
 								
 			    			}
