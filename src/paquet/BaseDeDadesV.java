@@ -14,6 +14,7 @@ public class BaseDeDadesV {
 		private String codiJavaBank;
 		private ArrayList<Client> LlistaClients= new ArrayList<Client>();
 		private ArrayList<Banquer> LlistaBanquers= new ArrayList<Banquer>();
+		private ArrayList<Persona> LlistaPersones= new ArrayList<Persona>();
 		public void Predefinir(){
 				codiJavaBank = "0622";
 				Client cli = AfegirClientaBD("Joan","Perez Gimenez","47294219M","30-10-1984",
@@ -21,7 +22,7 @@ public class BaseDeDadesV {
 				if (cli !=null){
 					cli.AfegirComptaBancariaAmbParametres("7589", 1500.00);
 					cli.AfegirComptaBancariaAmbParametres("0742", 1200.00);
-					LlistaClients.set(LlistaClients.indexOf(cli), cli);
+					LlistaPersones.set(LlistaPersones.indexOf(cli), cli);
 				}
 				
 				
@@ -31,7 +32,7 @@ public class BaseDeDadesV {
 				if (cli2!=null){
 					cli2.AfegirComptaBancariaAmbParametres("7589", 8500.00);
 					cli2.AfegirComptaBancariaAmbParametres("0742", 4000.00);
-					LlistaClients.set(LlistaClients.indexOf(cli2), cli2);
+					LlistaPersones.set(LlistaPersones.indexOf(cli2), cli2);
 					}
 				
 				
@@ -61,7 +62,7 @@ public class BaseDeDadesV {
 				if(JaExisteixClient(C1)){System.out.println("Ja existeix un client registrat amb DNI "+ dni); 
 				return null;}
 				
-				LlistaClients.add(C1);
+				LlistaPersones.add(C1);
 				System.out.println("S'ha inserit un Client a la BD amb DNI: "+ C1.getDni());
 				
 				return C1;
@@ -78,6 +79,12 @@ public class BaseDeDadesV {
 			LlistaClients = llistaClients;
 		}
 		
+		public ArrayList<Persona> getLlistaPersones() {
+			return LlistaPersones;
+		}
+		public void setLlistaPersones(ArrayList<Persona> llistaPersones) {
+			LlistaPersones = llistaPersones;
+		}
 		
 		private Banquer AfegirBanquerBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
 				String codiJavaBank, String contrasenya){
@@ -93,7 +100,7 @@ public class BaseDeDadesV {
 				if(JaExisteixBanquer(B1)){System.out.println("Ja existeix un banquer registrat amb DNI "+ B1.getDni()); 
 				return null;}
 				
-				LlistaBanquers.add(B1);
+				LlistaPersones.add(B1);
 
 				System.out.println("S'ha inserit un Banquer a la BD amb DNI: "+ B1.getDni() + " amb contrasenya: " + B1.getContrasenya());
 
@@ -117,8 +124,8 @@ public class BaseDeDadesV {
 		
 		public boolean JaExisteixBanquer(Banquer ban) {
 		    
-		    for (Banquer index : LlistaBanquers) {
-		        if (index.equals(ban)) {
+		    for (Persona index : LlistaPersones) {
+		        if (index.equals(ban)&&index instanceof Banquer ) {
 		            return true;
 		        }
 		    }
@@ -127,8 +134,8 @@ public class BaseDeDadesV {
 		
 		public boolean JaExisteixClient(Client cli) {
 		    
-		    for (Client index : LlistaClients) {
-		        if (index.equals(cli)) {
+		    for (Persona index : LlistaPersones) {
+		        if (index.equals(cli)&& index instanceof Client) {
 		            return true;
 		        }
 		    }
@@ -137,24 +144,25 @@ public class BaseDeDadesV {
 		
 		
 		public ComptaBancaria CercaComptaBancariaperIBAN(ComptaBancaria CC, String IBAN){
-			 Client cli = null;
+			 Persona cli = null;
 			 ComptaBancaria CCretorn =null;
-			    for (int i=0;i<LlistaClients.size();i++) {
-			    	cli = LlistaClients.get(i);
-			    	
-					for (int k=0;k<cli.getLlistaComptesdelClient().size();k++) {
-						LlistaClients.get(i);
-						if (cli.getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
-			    			LlistaClients.get(i);
-							CCretorn=cli.getLlistaComptesdelClient().get(k);
+			    for (int i=0;i<LlistaPersones.size();i++) {
+			    	cli = LlistaPersones.get(i);
+			    	if (cli instanceof Client){
+					for (int k=0;k<((Client) cli).getLlistaComptesdelClient().size();k++) {
+						LlistaPersones.get(i);
+						if (((Client) cli).getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
+			    			cli =LlistaPersones.get(i);
+							CCretorn=((Client) cli).getLlistaComptesdelClient().get(k);
 			    			if (CC!=null){
 			    				
-			    				LlistaClients.get(i).SubstitueixCC(k,CC);
+			    				((Client) cli).SubstitueixCC(k,CC);
 			    				CCretorn=CC;
 			    			}
 			    			break;
 			        }
 					}
+			    }
 			    }
 			    return CCretorn;
 			
@@ -162,45 +170,47 @@ public class BaseDeDadesV {
 		
 		
 		public void eliminarComptaBancaria(String IBAN){
-			 Client cli = null;
+			 Persona cli = null;
 			 
 			    for (int i=0;i<LlistaClients.size();i++) {
 			    	cli = LlistaClients.get(i);
-					for (int k=0;k<cli.getLlistaComptesdelClient().size();k++) {
+			    	if (cli instanceof Client){
+					for (int k=0;k<((Client) cli).getLlistaComptesdelClient().size();k++) {
 						LlistaClients.get(i);
-						if (cli.getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
+						if (((Client) cli).getLlistaComptesdelClient().get(k).getIBAN().equals(IBAN)) {
 			    			LlistaClients.get(i);
-							cli.getLlistaComptesdelClient().remove(k);
+			    			((Client) cli).getLlistaComptesdelClient().remove(k);
 								
 			    			}
 			    			break;
 			        }
 					}
 			    }
+			    }
 
 		
 		
 		
 		public Banquer CercaBanquerperDNI(String DNI) {
-		    Banquer ban = null;
-		    for (Banquer index : LlistaBanquers) {
-		        if (index.getDni().equals(DNI)) {
+		    Persona ban = null;
+		    for (Persona index : LlistaPersones) {
+		        if (index.getDni().equals(DNI)&& index instanceof Banquer) {
 		            ban = index;
 		            break;
 		        }
 		    }
-		    return ban;
+		    return (Banquer) ban;
 		}
 		
 		public Client CercaClientperDNI(String DNI) {
-		    Client cli = null;
-		    for (Client index : LlistaClients) {
-		        if (index.getDni().equals(DNI)) {
+		    Persona cli = null;
+		    for (Persona index : LlistaPersones) {
+		        if (index.getDni().equals(DNI)&& index instanceof Client) {
 		            cli = index;
 		            break;
 		        }
 		    }
-		    return cli;
+		    return (Client) cli;
 		}
 		
 

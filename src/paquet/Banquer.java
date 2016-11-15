@@ -37,7 +37,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 	
 	public static void menudOperacionsBanquer(BaseDeDadesV BDVirtual){
 		int resposta=-1;
-		while(resposta!=0){
+		while(resposta!=8){
 		System.out.println("\n\nQue vols fer? Escull opcio escrivint un numero");
 		System.out.println("	1 - Donar d'alta a un client");
 		System.out.println("	2 - Donar d'alta a un banquer");
@@ -72,7 +72,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 		case 6:
 			donarDeBaixaComptaBancaria(BDVirtual);
 			break;
-			case 7: 
+		case 7: 
 			veureLlistadeClients(BDVirtual);
 			break;
 		case 8:
@@ -116,22 +116,17 @@ public class Banquer extends Persona implements InterficieBanquer {
 		String codiSucursal = EntradaDades.Cadena();
 		
 		System.out.println("Data d'alta: ");
-		String date2 = EntradaDades.Cadena();
-		Date datadAlta = null;
-		try {
-			datadAlta = format.parse(date2);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DateFormat dateFormat2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		Date date2 = new Date();
+		System.out.println(dateFormat2.format(date2));
 		
-		Client NouClient = new Client(nom,cognoms,dni,dataNaixement,codiPais,codiJavaBank,codiSucursal,datadAlta);
+		Client NouClient = new Client(nom,cognoms,dni,dataNaixement,codiPais,codiJavaBank,codiSucursal,date2);
 		if(BDVirtual.JaExisteixClient(NouClient)){
 			System.out.println("Ja existeix un client registrat amb DNI "+ dni);
 			
 		}
-		BDVirtual.getLlistaClients().add(NouClient);
-		System.out.print("S'ha inserit un Client a la BD amb DNI: "+ NouClient.getDni());
+		BDVirtual.getLlistaPersones().add(NouClient);
+		System.out.print("\nS'ha inserit un Client a la BD amb DNI: "+ NouClient.getDni());
 		
 	}
 	
@@ -163,15 +158,15 @@ public class Banquer extends Persona implements InterficieBanquer {
 		System.out.println("Codi JavaBank: ");
 		String codiJavaBank = EntradaDades.Cadena();
 		
-		System.out.println("Contrsenya: ");
+		System.out.println("Contrasenya: ");
 		String contrasenya = EntradaDades.Cadena();
 		
 		Banquer NouBanquer = new Banquer(nom,cognoms,dni,dataNaixement,codiPais,codiJavaBank,contrasenya);
 		if(BDVirtual.JaExisteixBanquer(NouBanquer)){
-			System.out.println("Ja existeix un banquer registrat amb DNI "+ dni);
+			System.out.println("Ja existeix un banquer registrat amb DNI "+ dni+" i contrasenya "+contrasenya);
 			
 		}
-		BDVirtual.getLlistaBanquer().add(NouBanquer);
+		BDVirtual.getLlistaPersones().add(NouBanquer);
 		System.out.print("S'ha inserit un Banquer a la BD amb DNI: "+ NouBanquer.getDni());
 		
 	}
@@ -191,7 +186,6 @@ public class Banquer extends Persona implements InterficieBanquer {
 		System.out.println("Quantitat a ingressar en la nova compta bancaria. ");
 		Double Quantitat = EntradaDades.Double();
 		cli.AfegirComptaBancariaAmbParametres(PIN, Quantitat);
-		menudOperacionsBanquer(BDVirtual);
 		}
 	}
 	
@@ -209,7 +203,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 		int r = Lector.nextInt();
 		switch(r){
 		case 1:
-			BDVirtual.getLlistaClients().remove(UsuariDel);
+			BDVirtual.getLlistaPersones().remove(UsuariDel);
 			System.out.println("S'ha donat de baixa el client amb dni "+Dni);
 			
 		case 2:
@@ -240,7 +234,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 		int r = Lector.nextInt();
 		switch(r){
 		case 1:
-			BDVirtual.getLlistaClients().remove(UsuariDel);
+			BDVirtual.getLlistaPersones().remove(UsuariDel);
 			System.out.println("S'ha donat de baixa el banquer amb dni "+Dni);
 			break;
 		case 2:
@@ -273,20 +267,20 @@ public class Banquer extends Persona implements InterficieBanquer {
 			switch(r){
 			case 1:
 				BDVirtual.eliminarComptaBancaria(IBAN);
-				
+				System.out.println("S'ha donat de baixa la compta bancaria amb IBAN "+IBAN+" amb èxit.");
 			case 2:
 				
 			}
 			}}		
-		}
-
-			
+	}
+		
 		
 	private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
-		for(int i=0;i<BDVirtual.getLlistaClients().size();i++){
-			System.out.println(BDVirtual.getLlistaClients().get(i).getNom() + " "
-			+BDVirtual.getLlistaClients().get(i).getCognoms() + " "
-			+BDVirtual.getLlistaClients().get(i).getDni());
+		for(int i=0;i<BDVirtual.getLlistaPersones().size();i++){
+			if(BDVirtual.getLlistaPersones().get(i)instanceof Client)
+			System.out.println(BDVirtual.getLlistaPersones().get(i).getNom() + " "
+			+BDVirtual.getLlistaPersones().get(i).getCognoms() + " "
+			+BDVirtual.getLlistaPersones().get(i).getDni());
 		}
 	}
 
