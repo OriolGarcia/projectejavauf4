@@ -208,11 +208,14 @@ public class ComptaBancaria {
 					Quantitat = EntradaDades.Double();
 					
 				}
+				if(CCtemporal.Saldo-Quantitat<0){
+					System.out.println("No pots treure tants diners.");
+				}else{
 				String Concepte = "Extracció";
 				CCtemporal.RestaSaldo(Quantitat, Concepte);
 				BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
 				System.out.println("S'ha fet l'extraccíó amb èxit");	
-				
+				}
 			}
 			
 		}
