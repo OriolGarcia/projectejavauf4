@@ -4,12 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+
 /**
- * 
  * Aqui guardem les dades de clients i banquers
+ * 
  *
  */
-
 public class BaseDeDadesV {
 		private String codiJavaBank;
 		
@@ -24,8 +24,7 @@ public class BaseDeDadesV {
 					LlistaPersones.set(LlistaPersones.indexOf(cli), cli);
 				}
 				
-				
-				
+							
 				Client cli2 = AfegirClientaBD("Pepet","Llovera Pallarés","33342194F","30-10-1984",
 						"ES",codiJavaBank, "0310","04-10-1997");
 				if (cli2!=null){
@@ -42,9 +41,19 @@ public class BaseDeDadesV {
 				Banquer ban2 = AfegirBanquerBD("Maria","Garcia Martinez","66612345V","16-05-1983", "ES", codiJavaBank,
 												"Holaquetal4321");
 		}
-				
-				
-						
+								
+		/**
+		 * 				
+		 * @param nom
+		 * @param Cognoms
+		 * @param dni
+		 * @param ddMMyyyyNaixement
+		 * @param CodiPais
+		 * @param codiJavaBank
+		 * @param codiSucursal
+		 * @param ddMMyyyyAlta
+		 * @return
+		 */
 		private Client AfegirClientaBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
 				String codiJavaBank, String codiSucursal, String ddMMyyyyAlta){
 			
