@@ -1,7 +1,10 @@
 package paquet;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 /**
  * 
@@ -16,7 +19,7 @@ public class ComptaBancaria {
    private String numeroCompta;
    private String numerodecontrol1;
    private String numerodecontrol2;
-   private ArrayList<MovimentBancari> LlistaMoviments = new ArrayList<MovimentBancari>();
+   private ArrayList<MovimentBancari> llistamoviments;
    private static int numComptes;
    
 
@@ -44,6 +47,7 @@ public class ComptaBancaria {
 			this.Saldo=SaldoInicial;
 			this.PIN = PIN;
 			System.out.println("L'IBAN generat és: "+IBAN +" té el PIN: "+PIN);
+			llistamoviments =  new ArrayList<MovimentBancari>();
 		}
 		numComptes++;
 	}
@@ -57,16 +61,35 @@ public class ComptaBancaria {
 	public String getPIN() {
 		return PIN;
 	}
+	
 	public void SumaSaldo(double Quantitat, String concepte){
 		Date data = new Date();
 		Saldo+=Quantitat;
-		LlistaMoviments.add(new MovimentBancari(data, concepte, Quantitat));
+		llistamoviments.add(new MovimentBancari(data, concepte, Quantitat));
 		
 	}
+	
 	public void RestaSaldo(double Quantitat, String concepte){
 		Date data = new Date();
 		Saldo-=Quantitat;
-		LlistaMoviments.add(new MovimentBancari(data, concepte, -Quantitat));
+		llistamoviments.add(new MovimentBancari(data, concepte, -Quantitat));
+	}
+	
+	/**
+	 * Et mostra els ultims moviments efectuats, on et mostrarà la data en format SHORT(dd/mm/yyyy)
+	 * despres si s'ha fet un ingrés o una extracció, i per últim, ens mostrarà la quantitat extreta
+	 * o ingresada.
+	 */
+	public void mostraMoviments(){
+		System.out.println("Mostrant els últims moviments ...");
+		for(MovimentBancari entry : llistamoviments){
+			DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT,Locale.getDefault());
+			String dataFormatada = df.format(entry.getData());
+			System.out.print(dataFormatada+"   "); 
+			System.out.print(entry.getConcepte().toString()+"   ");
+			System.out.print(entry.getQuantitat().toString()+"€");
+			System.out.println(" ");
+	}
 	}
 
 	
@@ -74,7 +97,6 @@ public class ComptaBancaria {
 	 * Creem el menú, on se'ns demanarà el PIN de la compta, tenim 3 intents
 	 * Quan haguem entrar podrem elegir diferentes opcions
 	 */
-	
 	public static void Menudoperacions(BaseDeDadesV BDVirtual,String IBAN){
 		
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
@@ -111,7 +133,7 @@ public class ComptaBancaria {
 						switch(resposta){
 						
 						case 1:
-							ComptaBancaria.ingressarDiners(BDVirtual);
+							ComptaBancaria.ingressarDiners(BDVirtual, IBAN);
 							break;
 						case 2:
 							ComptaBancaria.TreureDiners(BDVirtual,IBAN);
@@ -123,7 +145,7 @@ public class ComptaBancaria {
 							ComptaBancaria.ConusltaSaldo(BDVirtual,IBAN);
 							break;
 						case 5:
-							//ComptaBancaria.UltimsMoviments(BDVirtual,IBAN);
+							ComptaBancaria.UltimsMoviments(BDVirtual, IBAN);
 							break;
 						case 6:
 							ComptaBancaria.CanviarPIN(BDVirtual,IBAN);
@@ -141,12 +163,12 @@ public class ComptaBancaria {
 	 * Aqui ens demanarà l'IBAN, en cas de possar l'IBAN incorrecte, ens mostrarà un missatge d'error
 	 * Després Ingresarem la quantitat desitjada.
 	 * Si no posem més de 10€ ens dirà que ha de ser major que 10.
-	 */
-		
-		public static void ingressarDiners(BaseDeDadesV BDVirtual){
-			
+	 */		
+		public static void ingressarDiners(BaseDeDadesV BDVirtual,String IBAN){
+			if(IBAN==null){
 			System.out.println("Escrigui el IBAN complet de la compta destinataria");
-			String IBAN = EntradaDades.Cadena();
+			IBAN = EntradaDades.Cadena();
+			}
 			ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 			if(CCtemporal!=null){
 				Double Quantitat;
@@ -158,6 +180,7 @@ public class ComptaBancaria {
 				}
 				String Concepte = "Ingrés";
 				CCtemporal.SumaSaldo(Quantitat, Concepte);
+				
 				BDVirtual.CercaComptaBancariaperIBAN(CCtemporal, IBAN);
 				System.out.println("S'ha fet l'ingrés amb èxit");	
 				
@@ -168,7 +191,11 @@ public class ComptaBancaria {
 			}
 		}
 	
-	
+		/**
+		 * 
+		 * @param BDVirtual
+		 * @param IBAN
+		 */
 	private static void TreureDiners(BaseDeDadesV BDVirtual, String IBAN) {
 			
 			ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
@@ -189,13 +216,35 @@ public class ComptaBancaria {
 			}
 			
 		}
-	
-	
-	
-	public void UltimsMoviments(BaseDeDadesV BDVirtual,String IBAN){
-		 
+		
+	/**
+	 * Ens mostrà els últims moviments efectuats i després 
+	 * @param BDVirtual
+	 * @param IBAN
+	 */
+	public static void UltimsMoviments(BaseDeDadesV BDVirtual,String IBAN){
+		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		if(CCtemporal!=null){
+			CCtemporal.mostraMoviments();
+		}
+		else{			
+			System.out.println("Hi ha hagut un problema al cercar la seva compta. ");
+		}
+		
+//		System.out.println("Mostran els últims 10 moviments ...");
+//		for(MovimentBancari entry : llistamoviments){
+//			System.out.print(entry.getData().toString()+"   "); 
+//			System.out.print(entry.getConcepte().toString()+"   ");
+//			System.out.print(entry.getQuantitat().toString());
+//			System.out.println();
+//	}
 	}
 	
+	/**
+	 * Fem les transferencies 
+	 * @param BDVirtual
+	 * @param IBAN
+	 */
 	public static void ferTransferencia(BaseDeDadesV BDVirtual, String IBAN){
 		System.out.println("Concepte de la transferència?");
 		String Concepte=EntradaDades.Cadena();
@@ -235,6 +284,11 @@ public class ComptaBancaria {
 			}
 	}
 	
+	/**
+	 * Canviem el PIN
+	 * @param BDVirtual
+	 * @param IBAN
+	 */
 	public static void CanviarPIN(BaseDeDadesV BDVirtual,String IBAN) {
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		
@@ -247,15 +301,19 @@ public class ComptaBancaria {
 					CCtemporal.PIN = NewPIN;
 				else System.out.println("El PIN ha de tenir 4 numeros" );
 			}
-			else  System.out.println("El PIN antic és incorrecte. No s'ha pogut canviar el PIN" );
-			
+			else  System.out.println("El PIN antic és incorrecte. No s'ha pogut canviar el PIN" );			
 		}
 	
+	/**
+	 * Consultem el saldo que tenim en el compte, on ens fa una cerca de la compta bancaria que tenim
+	 * i et printa el saldo de la compte.
+	 * @param BDVirtual
+	 * @param IBAN
+	 */
 	private static void ConusltaSaldo(BaseDeDadesV BDVirtual, String IBAN) {
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		System.out.println("En la compta "+IBAN+" hi ha "+ CCtemporal.Saldo+ " €");
 		
 	}
-	
-	
+
 	}

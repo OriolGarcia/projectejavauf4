@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * 
- * Aqui tenim la clase client que hereta de Persona, on tenim les caracteristiques de client
+ * Aqui tenim la clase client que hereta de Persona, on tenim les caracteristiques de client.
+ * @author Danny
  *
  */
-
 public class Client extends Persona implements InterficieClient {
 	
 	private String Codisucursal;
 
 	private Date datadAlta;
 	public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
-
 
 
 	// constructor
@@ -44,7 +42,6 @@ public class Client extends Persona implements InterficieClient {
 		LlistaComptesdelClient = llistaComptesdelClient;
 	}
 
-
 	
 	public void setSucursal(String Codisucursal){
 		this.Codisucursal = Codisucursal;
@@ -58,8 +55,8 @@ public class Client extends Persona implements InterficieClient {
 		this.datadAlta = datadAlta;
 		return null;
 	}
-public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
-		
+	
+public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){	
 		
 		Client cli = BDVirtual.CercaClientperDNI(Dni);
 		System.out.println("Escull en quina de les teves comptes vols fer les operacions");
@@ -96,10 +93,10 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 			  return false;
 		 }
 	}
+	
 	public void SubstitueixCC(int i,ComptaBancaria CC){
 		
-		LlistaComptesdelClient.set(i, CC);
-		
+		LlistaComptesdelClient.set(i, CC);		
 				
 	}
 	
@@ -117,8 +114,5 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 			  return false;
 		 }
 	}
-	
-	
-	
-   
 }
+
