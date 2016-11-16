@@ -7,11 +7,10 @@ import java.util.Date;
 
 
 /**
- * 
  * Aqui tenim la classe Banquer que hereta de persona, on tenim les caracteristiques de Banquer
- * Banquer
+ * després amb el super implementem el que tenim en persona.
+ *
  */
-
 public class Banquer extends Persona implements InterficieBanquer {
 	private String contrasenya;
 	
@@ -35,6 +34,14 @@ public class Banquer extends Persona implements InterficieBanquer {
 	
 	// metodes 
 	
+	/**
+	 * En aquest menu tenim les opcions que podrem elegir una vegada haguem entrat
+	 * com a Banquer, li posem a resposta -1 per que com comencem per 1, el programa
+	 * ho detectarà com a 0, es a dir, que si no possesim la variable resposta, 
+	 * quan escrivissim 2 ens agafaria el 1. En el while farà el bucle mentre resposta
+	 * no sigui igual a 8.
+	 * @param BDVirtual
+	 */
 	public static void menudOperacionsBanquer(BaseDeDadesV BDVirtual){
 		int resposta=-1;
 		while(resposta!=8){
@@ -81,8 +88,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 			break;
 		}
 		}
-	}
-	
+	}	
 	
 	private static void donardAltaClient(BaseDeDadesV BDVirtual){
 		System.out.println("Nom: ");
@@ -125,6 +131,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 			System.out.println("Ja existeix un client registrat amb DNI "+ dni);
 			
 		}
+
 		BDVirtual.getLlistaPersones().add(NouClient);
 		System.out.print("\nS'ha inserit un Client a la BD amb DNI: "+ NouClient.getDni());
 		
