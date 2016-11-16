@@ -201,6 +201,16 @@ public class BaseDeDadesV {
 		    return (Client) cli;
 		}
 		
+		public Client SetClientperDNI(String DNI, Client cli2) {
+		    Persona cli = null;
+		    for (Persona index : LlistaPersones) {
+		        if (index.getDni().equals(DNI)&& index instanceof Client) {
+		            index = cli2;
+		            break;
+		        }
+		    }
+		    return (Client) cli;
+		}
 
 	
 }

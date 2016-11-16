@@ -52,7 +52,14 @@ public class ComptaBancaria {
 		numComptes++;
 	}
 	
-
+	public double getSaldo(){
+		return Saldo;
+	}
+	
+	public void setSaldo(double Saldo){
+		this.Saldo = Saldo;
+		
+	}
 	
 	public String getIBAN() {
 		return IBAN;

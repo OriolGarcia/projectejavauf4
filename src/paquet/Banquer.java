@@ -1,9 +1,15 @@
 package paquet;
 
+import java.awt.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Dictionary;
 
 
 /**
@@ -276,12 +282,27 @@ public class Banquer extends Persona implements InterficieBanquer {
 		
 		
 	private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
+		Dictionary<Client, Double > llistaordenada = new Dictionary();
 		for(int i=0;i<BDVirtual.getLlistaPersones().size();i++){
-			if(BDVirtual.getLlistaPersones().get(i)instanceof Client)
+		Client cli;
+			cli = BDVirtual.LlistaPersones.get(i);
+	    	if (cli instanceof Client){
+	    	Double sumatori;	
+	    	ArrayList<ComptaBancaria> llistacomptesbancaries = ((Client) cli).getLlistaComptesdelClient();
+			for (int k=0;k<llistacomptesbancaries.size();k++) {
+				llistacomptesbancaries.get(k).getSaldo();
+				sumatori++;
+			
+			}
+	    	cli.setTotalSaldo(sumatori);
+	    	BDVirtual.SetClientperDNI(cli.getDni(), cli);
 			System.out.println(BDVirtual.getLlistaPersones().get(i).getNom() + " "
 			+BDVirtual.getLlistaPersones().get(i).getCognoms() + " "
 			+BDVirtual.getLlistaPersones().get(i).getDni());
+			}
+	    	List<Persona> llistapersones2 = (List<Persona>)BDVirtual.getLlistaPersones(); 
+	    	Collections.sort(llistapersones2);
+	    	
 		}
 	}
-
 }

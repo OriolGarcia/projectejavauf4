@@ -11,6 +11,7 @@ import java.util.Date;
 public class Client extends Persona implements InterficieClient {
 	
 	private String Codisucursal;
+	private Double TotalSaldo;
 
 	private Date datadAlta;
 	public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
@@ -31,7 +32,22 @@ public class Client extends Persona implements InterficieClient {
 		this.datadAlta = datadAlta;
 		
 	}
-			
+	
+	public void setTotalSaldo(double TotalSaldo){
+		this.TotalSaldo = TotalSaldo;
+	}
+	
+	public int compareTo(Client cli){
+		if(TotalSaldo<cli.TotalSaldo){
+			return -1;
+		}
+		if(TotalSaldo>cli.TotalSaldo){
+			return 1;
+		}
+		return nom.compareTo(cli.nom);
+	}
+	
+	
 	// getters i setters	
 	
 	public ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
