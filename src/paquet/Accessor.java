@@ -1,12 +1,10 @@
 package paquet;
 
-
 /**
- * 
- * Aqui tenim la classe Acessor, on tenim el menu d'opcions
- * Hola
+ * Aqui tenim la classe Acessor, on tenim el menu d'opcions on passem la resposta 
+ * pel switch
+ *
  */
-
 public class Accessor {
 			
 			BaseDeDadesV BDVirtual;
@@ -34,8 +32,7 @@ public class Accessor {
 				return 0;
 			default:
 				return 1;
-			}
-			
+			}			
 		}
 		
 		/**
@@ -83,8 +80,6 @@ public class Accessor {
 			if (Usuari==null){System.out.println("No existeix cap client registrat amb aquest DNI");}
 			else {
 					Usuari.LlistarComptesBancaries(BDVirtual,Dni);
-			}
-				
-			}
-				
+			}				
+			}			
 }
