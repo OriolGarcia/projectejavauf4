@@ -21,6 +21,7 @@ public class MovimentBancari {
 		this.quantitat = quantitat;
 	}
 
+	//getters i setters
 	public Date getData() {
 		return data;
 	}
