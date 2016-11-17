@@ -96,6 +96,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}	
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donardAltaClient(BaseDeDadesV BDVirtual){
 		System.out.println("Nom: ");
 		String nom = EntradaDades.Cadena();
@@ -143,6 +147,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		
 	}
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donardAltaBanquer(BaseDeDadesV BDVirtual){
 		System.out.println("Nom: ");
 		String nom = EntradaDades.Cadena();
@@ -185,7 +193,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 	}
 	
 
-
+/**
+ * 
+ * @param BDVirtual
+ */
 	public static void donardAltaComptaBancaria(BaseDeDadesV BDVirtual){
 		System.out.println("DNI del client: ");
 		String dni= EntradaDades.Cadena();
@@ -202,6 +213,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donarDeBaixaClient(BaseDeDadesV BDVirtual) {
 		System.out.println("Dni: ");
 		String Dni = Lector.next();
@@ -225,6 +240,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donarDeBaixaBanquer(BaseDeDadesV BDVirtual){
 		System.out.println("Dni: ");
 		String Dni = Lector.next();
@@ -257,7 +276,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}
 	
-
+/**
+ * 
+ * @param BDVirtual
+ */
 	private static void donarDeBaixaComptaBancaria(BaseDeDadesV BDVirtual){
 		System.out.println("Ingresa el IBAN de la compta bancaria que vulguis donar de baixa: ");
 		String IBAN = EntradaDades.Cadena();

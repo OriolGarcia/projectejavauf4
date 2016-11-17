@@ -8,7 +8,6 @@ import java.util.ArrayList;
 /**
  * Aqui guardem les dades de clients i banquers
  * 
- *
  */
 public class BaseDeDadesV {
 		private String codiJavaBank;
@@ -81,7 +80,7 @@ public class BaseDeDadesV {
 			}
 		}
 
-		
+		//getter i setter
 		public ArrayList<Persona> getLlistaPersones() {
 			return LlistaPersones;
 		}
@@ -89,6 +88,17 @@ public class BaseDeDadesV {
 			LlistaPersones = llistaPersones;
 		}
 		
+		/**
+		 * 
+		 * @param nom
+		 * @param Cognoms
+		 * @param dni
+		 * @param ddMMyyyyNaixement
+		 * @param CodiPais
+		 * @param codiJavaBank
+		 * @param contrasenya
+		 * @return
+		 */
 		private Banquer AfegirBanquerBD(String nom,String Cognoms,String dni,String ddMMyyyyNaixement,String CodiPais,
 				String codiJavaBank, String contrasenya){
 			
@@ -118,7 +128,11 @@ public class BaseDeDadesV {
 			
 		
 		
-
+/**
+ * 
+ * @param ban
+ * @return
+ */
 		public boolean JaExisteixBanquer(Banquer ban) {
 		    
 		    for (Persona index : LlistaPersones) {
@@ -129,6 +143,11 @@ public class BaseDeDadesV {
 		    return false;
 		}
 		
+		/**
+		 * 
+		 * @param cli
+		 * @return
+		 */
 		public boolean JaExisteixClient(Client cli) {
 		    
 		    for (Persona index : LlistaPersones) {
@@ -139,7 +158,12 @@ public class BaseDeDadesV {
 		    return false;
 		}
 		
-		
+		/**
+		 * 
+		 * @param CC
+		 * @param IBAN
+		 * @return
+		 */
 		public ComptaBancaria CercaComptaBancariaperIBAN(ComptaBancaria CC, String IBAN){
 			 Persona cli = null;
 			 ComptaBancaria CCretorn =null;
@@ -187,7 +211,11 @@ public class BaseDeDadesV {
 
 		
 		
-		
+		/**
+		 * 
+		 * @param DNI
+		 * @return
+		 */
 		public Banquer CercaBanquerperDNI(String DNI) {
 		    Persona ban = null;
 		    for (Persona index : LlistaPersones) {
@@ -199,6 +227,11 @@ public class BaseDeDadesV {
 		    return (Banquer) ban;
 		}
 		
+		/**
+		 * 
+		 * @param DNI
+		 * @return
+		 */
 		public Client CercaClientperDNI(String DNI) {
 		    Persona cli = null;
 		    for (Persona index : LlistaPersones) {
@@ -210,6 +243,13 @@ public class BaseDeDadesV {
 		    return (Client) cli;
 		}
 		
+		
+		/**
+		 * 
+		 * @param DNI
+		 * @param cli2
+		 * @return
+		 */
 		public Client SetClientperDNI(String DNI, Client cli2) {
 		    Persona cli = null;
 		    for (Persona index : LlistaPersones) {
