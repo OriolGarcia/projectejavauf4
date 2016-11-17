@@ -7,7 +7,6 @@ public class EntradaDades {
 	private static Scanner Lector = new Scanner(System.in);
 
 
-
 	public static int Enter (){
 		int nombre=0;
 		boolean correcte=false;
@@ -51,5 +50,4 @@ return nombre;
 		        }}
 		return Cadena;
 	}
-
 }

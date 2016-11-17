@@ -1,7 +1,6 @@
 package paquet;
 
 
-
 /**
  * 
  * Aqui tenim la classe Acessor, on tenim el menu d'opcions
@@ -39,6 +38,13 @@ public class Accessor {
 			
 		}
 		
+		/**
+		 * Et demana el DNI i el busca en Client, sino existeix sortirà un missatge
+		 * d'error, si accedim, ens demanarà la contrasenya, si fallem ens sortirà
+		 * un número d'intents, fins a arribar a 0 amb el missatge d'error, on 
+		 * ens mostrarà el missatge d'adeu, si entrem entrarem al menu d'operacions.
+		 * @param BDVirtual
+		 */
 		private static void ValidaBanquer(BaseDeDadesV BDVirtual){
 			System.out.println("Posa el teu DNI");
 			String Dni = EntradaDades.Cadena();
@@ -64,7 +70,11 @@ public class Accessor {
 			}
 		}
 		
-		
+		/**
+		 * Ens demana el DNI, i ens comparà amb els clients creats, sino es igual
+		 * et sortirà un missatge d'error.
+		 * @param BDVirtual
+		 */
 		private static void ValidaClient(BaseDeDadesV BDVirtual){
 			System.out.println("Posa el teu DNI");
 			String Dni = EntradaDades.Cadena();
@@ -76,6 +86,5 @@ public class Accessor {
 			}
 				
 			}
-		
-		
+				
 }
