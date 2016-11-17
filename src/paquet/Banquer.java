@@ -310,28 +310,42 @@ public class Banquer extends Persona implements InterficieBanquer {
 	}
 		
 		
-	private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
-		Dictionary<Client, Double > llistaordenada = new Dictionary();
-		for(int i=0;i<BDVirtual.getLlistaPersones().size();i++){
-		Client cli;
-			cli = BDVirtual.LlistaPersones.get(i);
-	    	if (cli instanceof Client){
-	    	Double sumatori;	
+	
+private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
+	ArrayList<Client> ClientsOrdenats = new ArrayList<Client>();
+	
+	for(int i=0;i<BDVirtual.getLlistaPersones().size();i++){
+	Client cli;
+	
+    	if (BDVirtual.getLlistaPersones().get(i) instanceof Client){
+    		cli=(Client) BDVirtual.getLlistaPersones().get(i);
+    		Double sumatori=0.0;	
 	    	ArrayList<ComptaBancaria> llistacomptesbancaries = ((Client) cli).getLlistaComptesdelClient();
 			for (int k=0;k<llistacomptesbancaries.size();k++) {
-				llistacomptesbancaries.get(k).getSaldo();
-				sumatori++;
+				sumatori+=llistacomptesbancaries.get(k).getSaldo();
+				
+			}
 			
-			}
 	    	cli.setTotalSaldo(sumatori);
-	    	BDVirtual.SetClientperDNI(cli.getDni(), cli);
-			System.out.println(BDVirtual.getLlistaPersones().get(i).getNom() + " "
-			+BDVirtual.getLlistaPersones().get(i).getCognoms() + " "
-			+BDVirtual.getLlistaPersones().get(i).getDni());
-			}
-	    	List<Persona> llistapersones2 = (List<Persona>)BDVirtual.getLlistaPersones(); 
-	    	Collections.sort(llistapersones2);
+	    	ClientsOrdenats.add(cli);
 	    	
-		}
-	}
+	    	
+    	}}
+    	Collections.sort(ClientsOrdenats, new Comparator<Client>() {
+	      
+			@Override
+			public int compare(Client o1, Client o2) {
+				// TODO Auto-generated method stub
+				return (o2).getTotalSaldo().compareTo(o1.getTotalSaldo());
+			}
+
+			
+			
+	    });
+    	for(Client client : ClientsOrdenats){
+    		
+    		System.out.println("El Client "+ client.getNom()+" amb dni "+client.getDni() + " té un total de "+client.getTotalSaldo()+ "€");
+    	}
+	
+}
 }
