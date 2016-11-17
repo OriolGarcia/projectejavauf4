@@ -1,20 +1,17 @@
 package paquet;
 
-import java.awt.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Dictionary;
 
 
 /**
  * Aqui tenim la classe Banquer que hereta de persona, on tenim les caracteristiques de Banquer
- * desprÈs amb el super implementem el que tenim en persona.
+ * despr√©s amb el super implementem el que tenim en persona.
  *
  */
 public class Banquer extends Persona implements InterficieBanquer {
@@ -43,8 +40,8 @@ public class Banquer extends Persona implements InterficieBanquer {
 	/**
 	 * En aquest menu tenim les opcions que podrem elegir una vegada haguem entrat
 	 * com a Banquer, li posem a resposta -1 per que com comencem per 1, el programa
-	 * ho detectar‡ com a 0, es a dir, que si no possesim la variable resposta, 
-	 * quan escrivissim 2 ens agafaria el 1. En el while far‡ el bucle mentre resposta
+	 * ho detectar√† com a 0, es a dir, que si no possesim la variable resposta, 
+	 * quan escrivissim 2 ens agafaria el 1. En el while far√† el bucle mentre resposta
 	 * no sigui igual a 8.
 	 * @param BDVirtual
 	 */
@@ -96,6 +93,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}	
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donardAltaClient(BaseDeDadesV BDVirtual){
 		System.out.println("Nom: ");
 		String nom = EntradaDades.Cadena();
@@ -143,6 +144,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		
 	}
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donardAltaBanquer(BaseDeDadesV BDVirtual){
 		System.out.println("Nom: ");
 		String nom = EntradaDades.Cadena();
@@ -185,7 +190,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 	}
 	
 
-
+/**
+ * 
+ * @param BDVirtual
+ */
 	public static void donardAltaComptaBancaria(BaseDeDadesV BDVirtual){
 		System.out.println("DNI del client: ");
 		String dni= EntradaDades.Cadena();
@@ -202,6 +210,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donarDeBaixaClient(BaseDeDadesV BDVirtual) {
 		System.out.println("Dni: ");
 		String Dni = Lector.next();
@@ -225,6 +237,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param BDVirtual
+	 */
 	private static void donarDeBaixaBanquer(BaseDeDadesV BDVirtual){
 		System.out.println("Dni: ");
 		String Dni = Lector.next();
@@ -257,7 +273,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		}
 	}
 	
-
+/**
+ * 
+ * @param BDVirtual
+ */
 	private static void donarDeBaixaComptaBancaria(BaseDeDadesV BDVirtual){
 		System.out.println("Ingresa el IBAN de la compta bancaria que vulguis donar de baixa: ");
 		String IBAN = EntradaDades.Cadena();
@@ -280,7 +299,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 			switch(r){
 			case 1:
 				BDVirtual.eliminarComptaBancaria(IBAN);
-				System.out.println("S'ha donat de baixa la compta bancaria amb IBAN "+IBAN+" amb Ëxit.");
+				System.out.println("S'ha donat de baixa la compta bancaria amb IBAN "+IBAN+" amb √®xit.");
 			case 2:
 				
 			}
@@ -288,28 +307,42 @@ public class Banquer extends Persona implements InterficieBanquer {
 	}
 		
 		
-	private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
-		Dictionary<Client, Double > llistaordenada = new Dictionary();
-		for(int i=0;i<BDVirtual.getLlistaPersones().size();i++){
-		Client cli;
-			cli = BDVirtual.LlistaPersones.get(i);
-	    	if (cli instanceof Client){
-	    	Double sumatori;	
+	
+private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
+	ArrayList<Client> ClientsOrdenats = new ArrayList<Client>();
+	
+	for(int i=0;i<BDVirtual.getLlistaPersones().size();i++){
+	Client cli;
+	
+    	if (BDVirtual.getLlistaPersones().get(i) instanceof Client){
+    		cli=(Client) BDVirtual.getLlistaPersones().get(i);
+    		Double sumatori=0.0;	
 	    	ArrayList<ComptaBancaria> llistacomptesbancaries = ((Client) cli).getLlistaComptesdelClient();
 			for (int k=0;k<llistacomptesbancaries.size();k++) {
-				llistacomptesbancaries.get(k).getSaldo();
-				sumatori++;
+				sumatori+=llistacomptesbancaries.get(k).getSaldo();
+				
+			}
 			
-			}
 	    	cli.setTotalSaldo(sumatori);
-	    	BDVirtual.SetClientperDNI(cli.getDni(), cli);
-			System.out.println(BDVirtual.getLlistaPersones().get(i).getNom() + " "
-			+BDVirtual.getLlistaPersones().get(i).getCognoms() + " "
-			+BDVirtual.getLlistaPersones().get(i).getDni());
-			}
-	    	List<Persona> llistapersones2 = (List<Persona>)BDVirtual.getLlistaPersones(); 
-	    	Collections.sort(llistapersones2);
+	    	ClientsOrdenats.add(cli);
 	    	
-		}
-	}
+	    	
+    	}}
+    	Collections.sort(ClientsOrdenats, new Comparator<Client>() {
+	      
+			@Override
+			public int compare(Client o1, Client o2) {
+				// TODO Auto-generated method stub
+				return (o2).getTotalSaldo().compareTo(o1.getTotalSaldo());
+			}
+
+			
+			
+	    });
+    	for(Client client : ClientsOrdenats){
+    		
+    		System.out.println("El Client "+ client.getNom()+" amb dni "+client.getDni() + " t√© un total de "+client.getTotalSaldo()+ "¬Ä");
+    	}
+	
+}
 }

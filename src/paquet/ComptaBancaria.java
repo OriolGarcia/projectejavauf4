@@ -125,7 +125,7 @@ public class ComptaBancaria {
 					
 						int resposta=0;
 					while(resposta!=7){
-						System.out.println("Que vols fer? Escull opcio escrivint un numero.");
+						System.out.println("\n\nQue vols fer? Escull opcio escrivint un numero.");
 						System.out.println("	1 - Ingressar diners");
 						System.out.println("	2 - Treure diners");
 						System.out.println("	3 - Fer transferencia");
@@ -210,8 +210,8 @@ public class ComptaBancaria {
 				Double Quantitat;
 				System.out.println("Quina quantitat vol treure?");
 				Quantitat = EntradaDades.Double();
-				while(Quantitat<10){
-					System.out.println("La quantitat ha de ser major a 10€. ");
+				while(Quantitat<10||Quantitat>1000){
+					System.out.println("La quantitat ha de ser major a 10€ i menor a 1000€. ");
 					Quantitat = EntradaDades.Double();
 					
 				}
@@ -274,12 +274,16 @@ public class ComptaBancaria {
 						System.out.println("La quantitat a ingressar ha des ser un nombre positiu o 0");
 						EntradaDades.Double();	
 					}
+					if(CCOrigen.Saldo-Quantitat<0){
+						System.out.println("No es poden transferir tants diners.");
+					}else{
 					CCOrigen.RestaSaldo(Quantitat, Concepte);
 					CCDesti.SumaSaldo(Quantitat, Concepte);
 					BDVirtual.CercaComptaBancariaperIBAN(CCOrigen, IBAN);
 					BDVirtual.CercaComptaBancariaperIBAN(CCDesti, IBANdesti);
 					System.out.println("S'ha fet la transferència amb èxit");
 				sortir=true;
+					}
 			}else {
 				System.out.println("El IBAN no és vàlid. Voleu tornar-ho a intentar?");
 				System.out.println("   1- Si");
@@ -322,7 +326,7 @@ public class ComptaBancaria {
 	 */
 	private static void ConusltaSaldo(BaseDeDadesV BDVirtual, String IBAN) {
 		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
-		System.out.println("En la compta "+IBAN+" hi ha "+ CCtemporal.Saldo+ " €");
+		System.out.println("En el compte "+IBAN+" hi ha "+ CCtemporal.Saldo+ " €");
 		
 	}
 

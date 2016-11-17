@@ -36,7 +36,9 @@ public class Client extends Persona implements InterficieClient {
 	public void setTotalSaldo(double TotalSaldo){
 		this.TotalSaldo = TotalSaldo;
 	}
-	
+	public Double getTotalSaldo() {
+		return TotalSaldo;
+	}
 	public int compareTo(Client cli){
 		if(TotalSaldo<cli.TotalSaldo){
 			return -1;

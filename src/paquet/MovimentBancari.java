@@ -45,5 +45,5 @@ public class MovimentBancari {
 	public void setQuantitat(Double quantitat) {
 		this.quantitat = quantitat;
 	}
-		
+
 }
