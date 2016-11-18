@@ -6,7 +6,10 @@ import java.text.DecimalFormat;
 public class EntradaDades {
 	private static Scanner Lector = new Scanner(System.in);
 
-
+/**
+ * 
+ * @return
+ */
 	public static int Enter (){
 		int nombre=0;
 		boolean correcte=false;
@@ -22,6 +25,11 @@ public class EntradaDades {
 	return nombre;
 		
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public static double Double(){
 		double nombre=0;
 	boolean correcte=false;
@@ -37,11 +45,20 @@ public class EntradaDades {
     }while(!correcte);
 return nombre;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public static double Caracter(){
 		return Lector.nextLine().charAt(0);
-		
-		
+				
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public static String Cadena(){
 		 String Cadena = Lector.nextLine();
 		    while(Cadena.length()<=0) {
