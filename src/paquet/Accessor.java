@@ -28,6 +28,7 @@ public class Accessor {
 				return 1;
 			case 3:
 				ComptaBancaria.ingressarDiners(BDVirtual,null);
+				return 1;
 			case 4:
 				return 0;
 			default:

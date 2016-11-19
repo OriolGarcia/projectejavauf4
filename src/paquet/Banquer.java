@@ -341,15 +341,10 @@ private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
 	    });
     	for(Client client : ClientsOrdenats){
     		
-<<<<<<< HEAD
-    		System.out.println("El Client "+ client.getNom()+" amb dni "+client.getDni() + " té un total de "+client.getTotalSaldo()+ "");
+
+    		System.out.println("El Client "+ client.getNom()+" amb dni "+client.getDni() + " té un total de "+client.getTotalSaldo()+" €");
     	}
-	
-=======
-    		System.out.println("El Client "+ client.getNom()+" amb dni "+client.getDni() + " t� un total de "+client.getTotalSaldo()+ "�");
-    	}
-	
+
 }
->>>>>>> refs/remotes/origin/master
-}
+
 }
