@@ -42,7 +42,7 @@ public class BaseDeDadesV {
 		}
 								
 		/**
-		 * 				
+		 * Per afegir client a la BD		
 		 * @param nom
 		 * @param Cognoms
 		 * @param dni
@@ -89,7 +89,7 @@ public class BaseDeDadesV {
 		}
 		
 		/**
-		 * 
+		 * Per afegir un Banquer a la BD
 		 * @param nom
 		 * @param Cognoms
 		 * @param dni
@@ -129,7 +129,7 @@ public class BaseDeDadesV {
 		
 		
 /**
- * 
+ * Si existeix Banquer o no.
  * @param ban
  * @return
  */
@@ -159,7 +159,7 @@ public class BaseDeDadesV {
 		}
 		
 		/**
-		 * 
+		 * Buscar compta bancaria per l'IBAN
 		 * @param CC
 		 * @param IBAN
 		 * @return
@@ -185,8 +185,7 @@ public class BaseDeDadesV {
 					}
 			    }
 			    }
-			    return CCretorn;
-			
+			    return CCretorn;			
 		}
 		
 		
@@ -212,7 +211,7 @@ public class BaseDeDadesV {
 		
 		
 		/**
-		 * 
+		 * Cercador per buscar el DNI d'un banquer
 		 * @param DNI
 		 * @return
 		 */
@@ -228,7 +227,7 @@ public class BaseDeDadesV {
 		}
 		
 		/**
-		 * 
+		 * Cercador per buscar el DNI d'un Client
 		 * @param DNI
 		 * @return
 		 */
