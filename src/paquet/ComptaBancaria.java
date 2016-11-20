@@ -320,7 +320,7 @@ public class ComptaBancaria {
 	
 	/**
 	 * Consultem el saldo que tenim en el compte, on ens fa una cerca de la compta bancaria que tenim
-	 * i et printa el saldo de la compte.
+	 * i t'ensenyna el saldo de la compte.
 	 * @param BDVirtual
 	 * @param IBAN
 	 */
