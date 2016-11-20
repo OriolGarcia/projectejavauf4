@@ -3,10 +3,18 @@ package paquet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-
+/**
+ * Aquesta interfície és innecessaria però la implementem perque s'ha de fer
+ *
+ */
 public interface InterficieClient {
-	
+	/**
+	 * Es declara un ArrayList de comptes Bancaris
+	 */
 	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
+	/**
+	 * Es declara un Sacanner
+	 */
 	Scanner Lector = new Scanner(System.in);
 	// constructor
 	public static ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
@@ -21,7 +29,6 @@ public interface InterficieClient {
 	public Date setDatadAlta(Date datadAlta);
 	public boolean AfegirComptaBancaria();
 	public void SubstitueixCC(int i,ComptaBancaria CC);
-	
 	public boolean AfegirComptaBancariaAmbParametres(String PIN,double Saldoinicial);	
 	public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){}
 }
