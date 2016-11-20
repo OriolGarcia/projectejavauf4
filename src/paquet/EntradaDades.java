@@ -30,7 +30,7 @@ public class EntradaDades {
 	 * 
 	 * @return
 	 */
-	public static double Double(){
+	public  static double Double(){
 		double nombre=0;
 	boolean correcte=false;
 	do{
