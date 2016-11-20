@@ -1,13 +1,18 @@
 package paquet;
 
 import java.util.Scanner;
+
+/**
+ * La Classe EntradaDades fa que no hi hagi errors quan s'entren dades.
+ * 
+ */
 import java.io.Console;
 import java.text.DecimalFormat;
 public class EntradaDades {
 	private static Scanner Lector = new Scanner(System.in);
 
 /**
- * 
+ * El metode Enter accepta un enter si entres una altra cosa et torna a demanar un enter
  * @return
  */
 	public static int Enter (){
@@ -27,7 +32,8 @@ public class EntradaDades {
 	}
 	
 	/**
-	 * 
+	 * El metode Double Enter accepta un  double i entres una altra cosa et torna a demanar un Double
+	 * A més, el doble el redondeja perque hi hagi com a molt 2 decimals
 	 * @return
 	 */
 	public  static double Double(){
@@ -47,7 +53,7 @@ return nombre;
 	}
 	
 	/**
-	 * 
+	 * El metode caracter retorna el primer caracter de la linea
 	 * @return
 	 */
 	public static double Caracter(){
@@ -56,7 +62,7 @@ return nombre;
 	}
 	
 	/**
-	 * 
+	 * El mètode Cadana retorna una linea però que estigui plena
 	 * @return
 	 */
 	public static String Cadena(){
