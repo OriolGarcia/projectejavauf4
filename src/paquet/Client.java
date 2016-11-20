@@ -33,7 +33,7 @@ public class Client extends Persona implements InterficieClient {
 		
 	}
 	
-	public void setTotalSaldo(double TotalSaldo){
+	public void setTotalSaldo(Double TotalSaldo){
 		this.TotalSaldo = TotalSaldo;
 	}
 	public Double getTotalSaldo() {
@@ -74,6 +74,14 @@ public class Client extends Persona implements InterficieClient {
 		return null;
 	}
 	
+	
+	/**
+	 * Crea una llista dels comptes bancaris del client amb el que hem ingressat
+	 * i ens dona a escollir.
+	 * @param BDVirtual
+	 * @param Dni
+	 */
+	
 public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){	
 		
 		Client cli = BDVirtual.CercaClientperDNI(Dni);
@@ -91,6 +99,9 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 	}
 
 	
+	/**
+	 * Podem afegir comptes bancaris entrant dades.
+	 */
 	public boolean AfegirComptaBancaria(){
 		System.out.println("Quin PIN vol colocar al compte? (4 digits enters)");
 		String PIN=EntradaDades.Cadena();
@@ -117,6 +128,10 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		LlistaComptesdelClient.set(i, CC);		
 				
 	}
+	
+	/**
+	 * Afegim comptes bancaris a traves de paràmetres.
+	 */
 	
 	public boolean AfegirComptaBancariaAmbParametres(String PIN,double Saldoinicial){
 		if (PIN.length()!=4&&!Main.isNumeric(PIN))

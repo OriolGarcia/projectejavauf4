@@ -1,7 +1,7 @@
 package paquet;
 
 /**
- * Aqui tenim la classe Acessor, on tenim el menu d'opcions on passem la resposta 
+ * Aquí tenim la classe Accessor, on tenim el menú d'opcions on passem la resposta 
  * pel switch
  *
  */
@@ -36,7 +36,7 @@ public class Accessor {
 		}
 		
 		/**
-		 * Et demana el DNI i el busca en Client, sino existeix sortirà un missatge
+		 * Et demana el DNI i el busca en Client, si no existeix sortirà un missatge
 		 * d'error, si accedim, ens demanarà la contrasenya, si fallem ens sortirà
 		 * un número d'intents, fins a arribar a 0 amb el missatge d'error, on 
 		 * ens mostrarà el missatge d'adeu, si entrem entrarem al menu d'operacions.
@@ -68,7 +68,7 @@ public class Accessor {
 		}
 		
 		/**
-		 * Ens demana el DNI, i ens comparà amb els clients creats, sino es igual
+		 * Ens demana el DNI, i ens compara amb els clients creats, sino es igual
 		 * et sortirà un missatge d'error.
 		 * @param BDVirtual
 		 */

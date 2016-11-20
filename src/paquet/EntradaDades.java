@@ -1,8 +1,7 @@
 package paquet;
 
 import java.util.Scanner;
-import java.io.Console;
-import java.text.DecimalFormat;
+
 public class EntradaDades {
 	private static Scanner Lector = new Scanner(System.in);
 
