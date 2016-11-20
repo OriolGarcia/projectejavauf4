@@ -110,6 +110,9 @@ public abstract class Persona {
 		this.codiJavaBank = codiJavaBank;
 	}
 	
+	/**
+	 * Només acepta números
+	 */
     private static boolean isNumeric(String cadena){
     	try {
     		Integer.parseInt(cadena);
@@ -118,6 +121,9 @@ public abstract class Persona {
     		return false;
     	}
     }
+    /**
+     * Només acepta lletres
+     */
     public static boolean Nomeslletres(String str){
     	boolean resposta = true;
     	if ((str).matches("[0-9]")) {
