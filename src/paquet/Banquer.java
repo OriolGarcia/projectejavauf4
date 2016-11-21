@@ -280,7 +280,7 @@ public class Banquer extends Persona implements InterficieBanquer {
 	private static void donarDeBaixaComptaBancaria(BaseDeDadesV BDVirtual){
 		System.out.println("Ingresa el IBAN de la compta bancaria que vulguis donar de baixa: ");
 		String IBAN = EntradaDades.Cadena();
-		ComptaBancaria ComptaDel = BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		CompteBancari ComptaDel = BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		if(ComptaDel == null){
 			System.out.println("No existeix cap compta bancaria amb aquest IBAN");
 			
@@ -317,7 +317,7 @@ private static void veureLlistadeClients(BaseDeDadesV BDVirtual){
     	if (BDVirtual.getLlistaPersones().get(i) instanceof Client){
     		cli=(Client) BDVirtual.getLlistaPersones().get(i);
     		Double sumatori=0.0;	
-	    	ArrayList<ComptaBancaria> llistacomptesbancaries = ((Client) cli).getLlistaComptesdelClient();
+	    	ArrayList<CompteBancari> llistacomptesbancaries = ((Client) cli).getLlistaComptesdelClient();
 			for (int k=0;k<llistacomptesbancaries.size();k++) {
 				sumatori+=llistacomptesbancaries.get(k).getSaldo();
 				

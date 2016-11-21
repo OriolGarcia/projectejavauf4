@@ -14,7 +14,7 @@ public class Client extends Persona implements InterficieClient {
 	private Double TotalSaldo;
 
 	private Date datadAlta;
-	public  ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
+	public  ArrayList<CompteBancari> LlistaComptesdelClient= new ArrayList<CompteBancari>();
 
 
 	// constructor
@@ -52,11 +52,11 @@ public class Client extends Persona implements InterficieClient {
 	
 	// getters i setters	
 	
-	public ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
+	public ArrayList<CompteBancari> getLlistaComptesdelClient() {
 		return LlistaComptesdelClient;
 	}
 
-	public void setLlistaComptesdelClient(ArrayList<ComptaBancaria> llistaComptesdelClient) {
+	public void setLlistaComptesdelClient(ArrayList<CompteBancari> llistaComptesdelClient) {
 		LlistaComptesdelClient = llistaComptesdelClient;
 	}
 
@@ -92,7 +92,7 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		opcio = EntradaDades.Enter();
 		}
 		String IBAN=cli.LlistaComptesdelClient.get(opcio-1).getIBAN();
-		ComptaBancaria.Menudoperacions(BDVirtual,IBAN);
+		CompteBancari.Menudoperacions(BDVirtual,IBAN);
 	}
 
 
@@ -110,7 +110,7 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		System.out.println("Quina quantitat de diners vol ingressar?");
 		double Saldoinicial=EntradaDades.Double();
 		 try{
-		ComptaBancaria NovaCompta =new ComptaBancaria(Saldoinicial,PIN,Codipais,codiJavaBank,Codisucursal);
+		CompteBancari NovaCompta =new CompteBancari(Saldoinicial,PIN,Codipais,codiJavaBank,Codisucursal);
 		LlistaComptesdelClient.add(NovaCompta);
 		 
 		return true;
@@ -120,7 +120,7 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 		 }
 	}
 	
-	public void SubstitueixCC(int i,ComptaBancaria CC){
+	public void SubstitueixCC(int i,CompteBancari CC){
 		
 		LlistaComptesdelClient.set(i, CC);		
 				
@@ -133,7 +133,7 @@ public void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){
 			return false;
 			
 		 try{
-		ComptaBancaria NovaCompta =new ComptaBancaria(Saldoinicial,PIN,Codipais,codiJavaBank,Codisucursal);
+		CompteBancari NovaCompta =new CompteBancari(Saldoinicial,PIN,Codipais,codiJavaBank,Codisucursal);
 		LlistaComptesdelClient.add(NovaCompta);
 		 
 		return true;

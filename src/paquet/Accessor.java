@@ -27,7 +27,7 @@ public class Accessor {
 				ValidaClient( BDVirtual);
 				return 1;
 			case 3:
-				ComptaBancaria.ingressarDiners(BDVirtual,null);
+				CompteBancari.ingressarDiners(BDVirtual,null);
 				return 1;
 			case 4:
 				return 0;

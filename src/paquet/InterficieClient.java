@@ -11,24 +11,24 @@ public interface InterficieClient {
 	/**
 	 * Es declara un ArrayList de comptes Bancaris
 	 */
-	public ArrayList<ComptaBancaria> LlistaComptesdelClient= new ArrayList<ComptaBancaria>();
+	public ArrayList<CompteBancari> LlistaComptesdelClient= new ArrayList<CompteBancari>();
 	/**
 	 * Es declara un Sacanner
 	 */
 	Scanner Lector = new Scanner(System.in);
 	// constructor
-	public static ArrayList<ComptaBancaria> getLlistaComptesdelClient() {
+	public static ArrayList<CompteBancari> getLlistaComptesdelClient() {
 		return null;
 	}
 
-	public void setLlistaComptesdelClient(ArrayList<ComptaBancaria> llistaComptesdelClient);
+	public void setLlistaComptesdelClient(ArrayList<CompteBancari> llistaComptesdelClient);
 
 	public void setSucursal(String Codisucursal);
 	public Date getDatadAlta();
 	
 	public Date setDatadAlta(Date datadAlta);
 	public boolean AfegirComptaBancaria();
-	public void SubstitueixCC(int i,ComptaBancaria CC);
+	public void SubstitueixCC(int i,CompteBancari CC);
 	public boolean AfegirComptaBancariaAmbParametres(String PIN,double Saldoinicial);	
 	public static void LlistarComptesBancaries(BaseDeDadesV BDVirtual,String Dni){}
 }

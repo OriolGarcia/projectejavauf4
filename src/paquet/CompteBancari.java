@@ -12,7 +12,7 @@ import java.util.Locale;
  *
  */
 
-public class ComptaBancaria {
+public class CompteBancari {
    private String IBAN;
    private Double Saldo;
    private String PIN;
@@ -24,7 +24,7 @@ public class ComptaBancaria {
    
 
 // Constructor
-	ComptaBancaria(double SaldoInicial, String PIN ,
+	CompteBancari(double SaldoInicial, String PIN ,
 			String Codipais, String codibanc, String codisucursal ){  
 		boolean error=false;
 		if ( PIN.length()!=4){ error=true;
@@ -106,7 +106,7 @@ public class ComptaBancaria {
 	 */
 	public static void Menudoperacions(BaseDeDadesV BDVirtual,String IBAN){
 		
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		CompteBancari CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		
 		if(CCtemporal!=null){
 			String PIN=""; int n=3;
@@ -140,22 +140,22 @@ public class ComptaBancaria {
 						switch(resposta){
 						
 						case 1:
-							ComptaBancaria.ingressarDiners(BDVirtual, IBAN);
+							CompteBancari.ingressarDiners(BDVirtual, IBAN);
 							break;
 						case 2:
-							ComptaBancaria.TreureDiners(BDVirtual,IBAN);
+							CompteBancari.TreureDiners(BDVirtual,IBAN);
 							break;
 						case 3:
-							ComptaBancaria.ferTransferencia(BDVirtual,IBAN);
+							CompteBancari.ferTransferencia(BDVirtual,IBAN);
 							break;
 						case 4:
-							ComptaBancaria.ConusltaSaldo(BDVirtual,IBAN);
+							CompteBancari.ConusltaSaldo(BDVirtual,IBAN);
 							break;
 						case 5:
-							ComptaBancaria.UltimsMoviments(BDVirtual, IBAN);
+							CompteBancari.UltimsMoviments(BDVirtual, IBAN);
 							break;
 						case 6:
-							ComptaBancaria.CanviarPIN(BDVirtual,IBAN);
+							CompteBancari.CanviarPIN(BDVirtual,IBAN);
 							break;
 						default:
 							break;
@@ -176,7 +176,7 @@ public class ComptaBancaria {
 			System.out.println("Escrigui el IBAN complet de la compta destinataria");
 			IBAN = EntradaDades.Cadena();
 			}
-			ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+			CompteBancari CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 			if(CCtemporal!=null){
 				Double Quantitat;
 				System.out.println("Ingressi la quantitat de diners desitjada, si us plau");
@@ -205,7 +205,7 @@ public class ComptaBancaria {
 		 */
 	private static void TreureDiners(BaseDeDadesV BDVirtual, String IBAN) {
 			
-			ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+			CompteBancari CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 			if(CCtemporal!=null){
 				Double Quantitat;
 				System.out.println("Quina quantitat vol treure?");
@@ -233,7 +233,7 @@ public class ComptaBancaria {
 	 * @param IBAN
 	 */
 	public static void UltimsMoviments(BaseDeDadesV BDVirtual,String IBAN){
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		CompteBancari CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		if(CCtemporal!=null){
 			CCtemporal.mostraMoviments();
 		}
@@ -258,14 +258,14 @@ public class ComptaBancaria {
 	public static void ferTransferencia(BaseDeDadesV BDVirtual, String IBAN){
 		System.out.println("Concepte de la transferència?");
 		String Concepte=EntradaDades.Cadena();
-		ComptaBancaria CCOrigen=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		CompteBancari CCOrigen=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		
 		boolean sortir=false;
 		while(!sortir){
 			
 			System.out.println("Ingressi l'IBAN de la compta en la que vol fer la transferencia");
 			String IBANdesti = EntradaDades.Cadena();
-			ComptaBancaria CCDesti=BDVirtual.CercaComptaBancariaperIBAN(null, IBANdesti);
+			CompteBancari CCDesti=BDVirtual.CercaComptaBancariaperIBAN(null, IBANdesti);
 			if(CCDesti!=null){
 				
 				System.out.println("Ingressi la quantitat de diners que vol transferir, si us plau");
@@ -304,7 +304,7 @@ public class ComptaBancaria {
 	 * @param IBAN
 	 */
 	public static void CanviarPIN(BaseDeDadesV BDVirtual,String IBAN) {
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		CompteBancari CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		
 			System.out.println("Quin és el PIN actual?");
 			String OldPIN= EntradaDades.Cadena();
@@ -325,7 +325,7 @@ public class ComptaBancaria {
 	 * @param IBAN
 	 */
 	private static void ConusltaSaldo(BaseDeDadesV BDVirtual, String IBAN) {
-		ComptaBancaria CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
+		CompteBancari CCtemporal=BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		System.out.println("En el compte "+IBAN+" hi ha "+ CCtemporal.Saldo+ " €");
 		
 	}

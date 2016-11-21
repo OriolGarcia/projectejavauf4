@@ -164,9 +164,9 @@ public class BaseDeDadesV {
 		 * @param IBAN
 		 * @return
 		 */
-		public ComptaBancaria CercaComptaBancariaperIBAN(ComptaBancaria CC, String IBAN){
+		public CompteBancari CercaComptaBancariaperIBAN(CompteBancari CC, String IBAN){
 			 Persona cli = null;
-			 ComptaBancaria CCretorn =null;
+			 CompteBancari CCretorn =null;
 			    for (int i=0;i<LlistaPersones.size();i++) {
 			    	cli = LlistaPersones.get(i);
 			    	if (cli instanceof Client){
