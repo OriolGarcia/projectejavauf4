@@ -1,13 +1,12 @@
 package paquet;
 
 import java.util.Scanner;
-
+import java.io.Console;
+import java.text.DecimalFormat;
 /**
  * La Classe EntradaDades fa que no hi hagi errors quan s'entren dades.
  * 
  */
-import java.io.Console;
-import java.text.DecimalFormat;
 public class EntradaDades {
 	private static Scanner Lector = new Scanner(System.in);
 

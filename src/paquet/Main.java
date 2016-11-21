@@ -1,5 +1,11 @@
 package paquet;
-
+/**
+ * Aquesta classe té el main del programa, càrrega la base de dades predefinida 
+ * i excecuta l'accessor fins que es tanca.
+ * 
+ * @author ogs10_000
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {

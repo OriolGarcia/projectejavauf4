@@ -1,7 +1,12 @@
 package paquet;
 
 import java.util.Date;
-
+/**
+ * 
+ * La classe moviment bancari es una classe que guarda informació d'un moviment per despres emmagazemar-la
+ * @author ogs10_000
+ *
+ */
 public class MovimentBancari {
 	private Date data;
 	private String concepte;
