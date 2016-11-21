@@ -51,10 +51,10 @@ public class Banquer extends Persona implements InterficieBanquer {
 		System.out.println("\n\nQue vols fer? Escull opcio escrivint un numero");
 		System.out.println("	1 - Donar d'alta a un client");
 		System.out.println("	2 - Donar d'alta a un banquer");
-		System.out.println("	3 - Donar d'alta una compta bancaria");
+		System.out.println("	3 - Donar d'alta un Compte Bancari");
 		System.out.println("	4 - Donar de baixa a un client");
 		System.out.println("	5 - Donar de baixa a un banquer");
-		System.out.println("	6 - Donar de baixa una compta bancaria");
+		System.out.println("	6 - Donar de baixa un Compte Bancari");
 		System.out.println("	7 - Veure llista de clients");
 		System.out.println("	8 - Sortir");
 		
@@ -202,9 +202,9 @@ public class Banquer extends Persona implements InterficieBanquer {
 			System.out.println("No s'ha trobat cap Client amb aquest DNI. ");
 		
 		}else{
-			System.out.println("PIN per la nova compta bancaria: ");
+			System.out.println("PIN per la nova Compte Bancari: ");
 		String PIN = EntradaDades.Cadena();
-		System.out.println("Quantitat a ingressar en la nova compta bancaria. ");
+		System.out.println("Quantitat a ingressar en el nou Compte Bancari. ");
 		Double Quantitat = EntradaDades.Double();
 		cli.AfegirComptaBancariaAmbParametres(PIN, Quantitat);
 		}
@@ -278,11 +278,11 @@ public class Banquer extends Persona implements InterficieBanquer {
  * @param BDVirtual
  */
 	private static void donarDeBaixaComptaBancaria(BaseDeDadesV BDVirtual){
-		System.out.println("Ingresa el IBAN de la compta bancaria que vulguis donar de baixa: ");
+		System.out.println("Ingresa el IBAN de el Compte Bancari que vulguis donar de baixa: ");
 		String IBAN = EntradaDades.Cadena();
 		CompteBancari ComptaDel = BDVirtual.CercaComptaBancariaperIBAN(null, IBAN);
 		if(ComptaDel == null){
-			System.out.println("No existeix cap compta bancaria amb aquest IBAN");
+			System.out.println("No existeix cap Compte Bancari amb aquest IBAN");
 			
 		}else{
 			System.out.println("PIN: ");
@@ -292,14 +292,14 @@ public class Banquer extends Persona implements InterficieBanquer {
 				
 			}else{
 			
-			System.out.println("Donar de baixa la compta bancaria amb IBAN "+IBAN+" ?");
+			System.out.println("Donar de baixa el Compte Bancari amb IBAN "+IBAN+" ?");
 			System.out.println("	1 - Si");
 			System.out.println("	2 - No");
 			int r = EntradaDades.Enter();
 			switch(r){
 			case 1:
 				BDVirtual.eliminarComptaBancaria(IBAN);
-				System.out.println("S'ha donat de baixa la compta bancaria amb IBAN "+IBAN+" amb èxit.");
+				System.out.println("S'ha donat de baixa el Compte Bancari amb IBAN "+IBAN+" amb èxit.");
 			case 2:
 				
 			}
